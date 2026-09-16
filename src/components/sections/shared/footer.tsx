@@ -11,11 +11,6 @@ const navLinks = [
   { title: "Contact", href: "/contact" },
 ];
 
-const legalLinks = [
-  { title: "Privacy Policy", href: "/legal/privacy-policy" },
-  { title: "Terms & Conditions", href: "/legal/terms-&-condition" },
-  { title: "Cookie Policy", href: "/legal/cookie-policy" },
-];
 
 const socialLinks = [
   { icon: Linkedin, href: "https://www.linkedin.com/company/fivopay/", label: "LinkedIn" },
@@ -52,19 +47,6 @@ const Footer = () => {
               <h4 className="font-semibold text-white mb-6">Navigation</h4>
               <ul className="space-y-4">
                 {navLinks.map((link) => (
-                  <li key={link.title}>
-                    <Link to={link.href} className="text-white/70 hover:text-white transition-colors text-[16px]">
-                      {link.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-white mb-6">Legal</h4>
-              <ul className="space-y-4">
-                {legalLinks.map((link) => (
                   <li key={link.title}>
                     <Link to={link.href} className="text-white/70 hover:text-white transition-colors text-[16px]">
                       {link.title}

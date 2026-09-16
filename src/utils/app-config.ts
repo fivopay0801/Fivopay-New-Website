@@ -1,8 +1,8 @@
 export const appConfig = {
-    name: "Paymark",
-    description: "Paymark is a payment processing platform that allows you to accept payments online and offline.",
-    url: "https://paymark.lovable.dev",
-    logo: "/images/common/logo.svg",
+    name: "Fivopay",
+    description: "Fivopay is infrastructure for cooperative societies, ethical banking and full core banking operations. Making Banking Easier.",
+    url: "https://fivopay.com",
+    logo: "/images/common/logo.png",
     favicon: "/favicon.ico",
     ogImage: "/og-image.jpg",
 }

@@ -5,11 +5,9 @@ import { Menu, XIcon } from "lucide-react";
 import React from "react";
 
 import Container from "@/components/container";
-import UserMenu from "@/components/sections/shared/user-menu";
 import { Button } from "@/components/ui/button";
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { useAuth } from "@/hooks/use-auth";
 import { Link } from "react-router-dom";
 import logo from "@/assets/Fivopay.png";
 
@@ -30,46 +28,13 @@ const pages = [
     name: "Pricing",
     href: "/pricing"
   },
-
   {
     name: "Contact",
     href: "/contact"
-  },
-  {
-    name: "Integration",
-    href: "/integration"
   }
-]
-
-const innerPages = [
-  {
-    name: "Pricing Single",
-    href: "/pricing/starter"
-  },
-  {
-    name: "Blog Single",
-    href: "/blog/travel-ticketing"
-  },
-  {
-    name: "Integration Single",
-    href: "/integration/ledgerlink"
-  },
-  {
-    name: "Early Access",
-    href: "/early-access"
-  },
-  {
-    name: "Cookie Policy",
-    href: "/legal/cookie-policy"
-  },
-  {
-    name: "404",
-    href: "/404"
-  }
-]
+];
 
 const Navbar = () => {
-  const { user, loading } = useAuth();
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
@@ -81,19 +46,6 @@ const Navbar = () => {
 
         {/* <!-- Mobile --> */}
         <div className="flex items-center gap-2 lg:hidden">
-          {!loading && (
-            user ? (
-              <UserMenu />
-            ) : (
-              <Button
-                asChild
-                size="sm"
-                className="relative overflow-hidden group bg-gradient-to-b from-slate-800 to-slate-900 hover:from-slate-700 hover:to-slate-850 text-white font-medium text-sm px-4 py-2 h-auto rounded-full border-t border-white/20 shadow-[0_2px_6px_rgba(0,0,0,0.15),inset_0_1px_0_rgba(255,255,255,0.15)] active:translate-y-[1px] transition-all duration-200"
-              >
-                <Link to="/signup">Open Account</Link>
-              </Button>
-            )
-          )}
           <Sheet
             open={isOpen}
             onOpenChange={setIsOpen}>
@@ -128,25 +80,18 @@ const Navbar = () => {
                     </SheetPrimitive.Close>
                   </div>
                 </SheetHeader>
-                <div className="px-2 py-6 flex flex-col h-full justify-between flex-1 overflow-y-auto">
-                  <div className="flex flex-col gap-4">
-                    <div className="space-y-2">
-                      <p className="text-white uppercase mb-3 text-sm font-semibold tracking-wider">Pages</p>
-                      {pages.map((page) => (
-                        <Link key={page.name} to={page.href} onClick={() => setIsOpen(false)} className="block py-2 text-lg text-muted-foreground hover:text-primary font-medium transition-colors">
-                          {page.name}
-                        </Link>
-                      ))}
-                    </div>
-
-                    <div className="space-y-2 pt-4">
-                      <p className="text-white uppercase mb-3 text-sm font-semibold tracking-wider">Inner Pages</p>
-                      {innerPages.map((page) => (
-                        <Link key={page.name} to={page.href} onClick={() => setIsOpen(false)} className="block py-2 text-lg text-muted-foreground hover:text-primary font-medium transition-colors">
-                          {page.name}
-                        </Link>
-                      ))}
-                    </div>
+                <div className="px-3 py-6 flex flex-col h-full justify-between flex-1 overflow-y-auto">
+                  <div className="flex flex-col gap-1">
+                    {pages.map((page) => (
+                      <Link
+                        key={page.name}
+                        to={page.href}
+                        onClick={() => setIsOpen(false)}
+                        className="block py-3 px-2 text-lg text-white/90 hover:text-primary font-semibold transition-colors border-b border-white/10"
+                      >
+                        {page.name}
+                      </Link>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -200,18 +145,12 @@ const Navbar = () => {
         </NavigationMenu>
 
         <div className="hidden lg:flex gap-2 items-center w-fit shrink-0 justify-end">
-          {!loading && (
-            user ? (
-              <UserMenu />
-            ) : (
-              <Button
-                asChild
-                className="relative overflow-hidden group bg-gradient-to-b from-slate-800 to-slate-900 hover:from-slate-700 hover:to-slate-850 text-white font-medium text-[16px] px-6 py-2.5 h-auto rounded-full border-t border-white/20 shadow-[0_2px_8px_rgba(0,0,0,0.15),0_1px_2px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.15)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_4px_14px_rgba(0,0,0,0.22),inset_0_1px_0_rgba(255,255,255,0.2)] active:translate-y-[1px] active:shadow-[0_1px_3px_rgba(0,0,0,0.12)] cursor-pointer"
-              >
-                <Link to="/signup">Get Started</Link>
-              </Button>
-            )
-          )}
+          <Button
+            asChild
+            className="relative overflow-hidden group bg-gradient-to-b from-slate-800 to-slate-900 hover:from-slate-700 hover:to-slate-850 text-white font-medium text-[16px] px-6 py-2.5 h-auto rounded-full border-t border-white/20 shadow-[0_2px_8px_rgba(0,0,0,0.15),0_1px_2px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.15)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_4px_14px_rgba(0,0,0,0.22),inset_0_1px_0_rgba(255,255,255,0.2)] active:translate-y-[1px] active:shadow-[0_1px_3px_rgba(0,0,0,0.12)] cursor-pointer"
+          >
+            <Link to="/contact">Get Started</Link>
+          </Button>
         </div>
       </Container>
     </header>

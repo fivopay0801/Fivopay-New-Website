@@ -19,7 +19,7 @@ const pricingPlans = [
             "International wire transfers at $25",
         ],
         buttonText: "Get Started",
-        buttonLink: "/pricing/starter",
+        buttonLink: "/contact",
         isHighlighted: false,
     },
     {
@@ -37,7 +37,7 @@ const pricingPlans = [
             "International wire transfers for $20",
         ],
         buttonText: "Get Started Today!",
-        buttonLink: "/pricing/professional",
+        buttonLink: "/contact",
         isHighlighted: true,
         backgroundImage: "/images/pricing/pricing-bg.webp",
     },

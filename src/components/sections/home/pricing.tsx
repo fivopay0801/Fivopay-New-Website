@@ -3,6 +3,7 @@ import { StaggerContainer } from '@/components/ui/motion/stagger'
 import Container from '../../container'
 import { Button } from '@/components/ui/button'
 import { CheckCircle2, Info } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 const pricingTiers = [
   {
@@ -186,8 +187,8 @@ const Pricing = () => {
                     </span>
                   </div>
 
-                  <Button className="w-full font-semibold" variant={tier.isPopular ? "default" : "secondary"}>
-                    Get Started
+                  <Button asChild className="w-full font-semibold" variant={tier.isPopular ? "default" : "secondary"}>
+                    <Link to="/contact">Get Started</Link>
                   </Button>
                 </div>
 
