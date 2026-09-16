@@ -1,86 +1,117 @@
 import Container from "@/components/container";
 import Layout from "@/components/layout";
 import LegalHero from "@/components/sections/legal/hero";
+import SEO from "@/components/seo";
 import { appConfig } from "@/utils/app-config";
 
 const TermsAndConditionPage = () => {
-
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "WebPage",
         "name": `Terms & Conditions | ${appConfig.name}`,
-        "description": `${appConfig.description}`,
-        "url": `${appConfig.url}/legal/terms-&-condition`
+        "description": `Terms and Conditions for ${appConfig.name} by SAIKHLEARN & SCHOLAR NEXUS PRIVATE LIMITED.`,
+        "url": `${appConfig.url}/terms-and-conditions`
     };
 
     return (
         <>
-
+            <SEO
+                title={`Terms & Conditions | ${appConfig.name}`}
+                description={`Terms and Conditions for ${appConfig.name} - Read the terms governing the use of our services.`}
+                canonicalUrl={`/terms-and-conditions`}
+                ogType="website"
+                jsonLd={jsonLd}
+            />
             <Layout>
                 <LegalHero
-                    title={`Terms & Conditions`}
-                    description={`Terms & Conditions | Revio - Legal`}
+                    title="Terms and Conditions"
+                    description="Last Updated: March 20, 2026"
                 />
-                <section>
-                    <Container className="flex flex-col lg:flex-row justify-center md:gap-10 gap-6 py-[60px]">
-                        {/* Main Content Column */}
-                        <article className="max-w-[1030px]">
-                            <p className="lead text-xl text-muted-foreground md:mb-8 mb-4">
-                                In the rapidly evolving landscape of digital commerce, payment gateways have emerged as the unsung heroes, silently powering the transactions that drive the global economy.
-                            </p>
-                            <h3 className="mb-2">The backbone of global expansion</h3>
-                            <p>
-                                Gone are the days when online transactions were clumsy and insecure. Today, modern payment gateways offer seamless, encrypted, and instant processing capabilities that have democratized access to global markets for businesses of all sizes.
-                            </p>
+                <section className="py-12 md:py-16">
+                    <Container className="flex flex-col justify-center items-center">
+                        <article className="w-full max-w-[880px] space-y-10 text-white/80 leading-relaxed text-[16px] md:text-[17px]">
+                            {/* Section 1 */}
+                            <div className="p-6 md:p-8 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-sm space-y-4">
+                                <h3 className="text-xl md:text-2xl font-bold text-white flex items-center gap-3">
+                                    <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/20 text-primary text-sm font-bold">1</span>
+                                    Acceptance of Terms
+                                </h3>
+                                <p className="text-white/80">
+                                    By accessing and using the website of <strong className="text-white">FivoPay</strong>, a product of <strong className="text-white">SAIKHLEARN & SCHOLAR NEXUS PRIVATE LIMITED</strong> (&quot;the Company&quot;), you agree to be bound by these Terms and Conditions and all applicable laws and regulations.
+                                </p>
+                            </div>
 
-                            <p className="md:mb-8 mb-4">
-                                From simple credit card processing to integrating digital wallets and cryptocurrencies, the scope of what a payment gateway handles has expanded dramatically. This evolution is not just about technology; it's about customer experience.
-                            </p>
+                            {/* Section 2 */}
+                            <div className="p-6 md:p-8 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-sm space-y-4">
+                                <h3 className="text-xl md:text-2xl font-bold text-white flex items-center gap-3">
+                                    <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/20 text-primary text-sm font-bold">2</span>
+                                    Use License
+                                </h3>
+                                <p className="text-white/80">
+                                    Permission is granted to temporarily download one copy of the materials on the Company&apos;s website for personal, non-commercial transitory viewing only.
+                                </p>
+                            </div>
 
-                            <h3 className="mb-2">Security: Where trust meets technology</h3>
-                            <p className="mb-4">
-                                Consumers demand speed and security. A study shows that 40% of users abandon their cart if the checkout process is too complicated. Payment gateways solve this by offering one-click checkouts and biometric authentication.
-                            </p>
+                            {/* Section 3 */}
+                            <div className="p-6 md:p-8 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-sm space-y-4">
+                                <h3 className="text-xl md:text-2xl font-bold text-white flex items-center gap-3">
+                                    <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/20 text-primary text-sm font-bold">3</span>
+                                    User Obligations
+                                </h3>
+                                <p className="text-white/80">
+                                    You agree not to use the website or services for any unlawful purpose. You are responsible for maintaining the confidentiality of any account details or passwords.
+                                </p>
+                            </div>
 
-                            <blockquote className="md:mb-8 mb-4">
-                                "The future of commerce is frictionless. Payment gateways are the oil in the engine of the digital economy."
-                            </blockquote>
+                            {/* Section 4 */}
+                            <div className="p-6 md:p-8 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-sm space-y-4">
+                                <h3 className="text-xl md:text-2xl font-bold text-white flex items-center gap-3">
+                                    <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/20 text-primary text-sm font-bold">4</span>
+                                    Service Terms
+                                </h3>
+                                <p className="text-white/80">
+                                    The Company provides financial technology solutions. Specific service levels and uptime guarantees are governed by separate Service Level Agreements (SLA) signed during onboarding.
+                                </p>
+                            </div>
 
-                            <h3 className="mb-2">The growth of global online payments</h3>
-                            <p className="md:mb-8 mb-4">
-                                As we move forward, AI-driven fraud detection and decentralized finance (DeFi) integrations are set to redefine the standards again. Businesses that adapt to these changes will lead the charge in the next decade of digital innovation.
-                            </p>
+                            {/* Section 5 */}
+                            <div className="p-6 md:p-8 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-sm space-y-4">
+                                <h3 className="text-xl md:text-2xl font-bold text-white flex items-center gap-3">
+                                    <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/20 text-primary text-sm font-bold">5</span>
+                                    Intellectual Property
+                                </h3>
+                                <p className="text-white/80">
+                                    All content, logos, and software on this website are the property of <strong className="text-white">SAIKHLEARN & SCHOLAR NEXUS PRIVATE LIMITED</strong> and are protected by applicable copyright and trademark law.
+                                </p>
+                            </div>
 
-                            <h3 className="mb-2">Greater flexibility & payment choices</h3>
-                            <p className="md:mb-8 mb-4">
-                                The modern payment gateway ecosystem offers unprecedented flexibility, allowing businesses to accept payments from multiple sources including credit cards, digital wallets, bank transfers, and emerging cryptocurrencies.
-                            </p>
+                            {/* Section 6 */}
+                            <div className="p-6 md:p-8 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-sm space-y-4">
+                                <h3 className="text-xl md:text-2xl font-bold text-white flex items-center gap-3">
+                                    <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/20 text-primary text-sm font-bold">6</span>
+                                    Limitations
+                                </h3>
+                                <p className="text-white/80">
+                                    In no event shall the Company or its partners be liable for any damages arising out of the use or inability to use the materials on the Company&apos;s website.
+                                </p>
+                            </div>
 
-                            <h3 className="mb-2">Why flexibility matters</h3>
-                            <p className="md:mb-8 mb-4">
-                                In today's global marketplace, customers expect to pay using their preferred method. Payment gateways that offer diverse payment options see higher conversion rates and customer satisfaction.
-                            </p>
-
-                            <h3 className="mb-2">Backbone of global online transactions</h3>
-                            <p className="md:mb-8 mb-4">
-                                Payment gateways serve as the critical infrastructure that enables businesses to operate across borders, handling currency conversions, compliance, and regulatory requirements seamlessly.
-                            </p>
-
-                            <h3 className="mb-2">How payment gateways empower digital commerce</h3>
-                            <p className="md:mb-8 mb-4">
-                                By providing secure, fast, and reliable transaction processing, payment gateways remove the technical barriers that once prevented small businesses from competing on a global scale.
-                            </p>
-
-                            <h3 className="mb-2">Conclusion: The currency of innovation</h3>
-                            <p>
-                                As digital commerce continues to evolve, payment gateways will remain at the forefront of innovation, enabling new business models and transforming how we think about money and transactions in the digital age.
-                            </p>
+                            {/* Section 7 */}
+                            <div className="p-6 md:p-8 rounded-2xl bg-gradient-to-r from-blue-950/30 to-purple-950/30 border border-blue-500/20 backdrop-blur-sm space-y-4">
+                                <h3 className="text-xl md:text-2xl font-bold text-white flex items-center gap-3">
+                                    <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/20 text-primary text-sm font-bold">7</span>
+                                    Governing Law
+                                </h3>
+                                <p className="text-white/80">
+                                    These terms and conditions are governed by and construed in accordance with the laws of <strong className="text-white">India</strong>, and you irrevocably submit to the exclusive jurisdiction of the courts in <strong className="text-white">Pune, Maharashtra</strong>.
+                                </p>
+                            </div>
                         </article>
                     </Container>
                 </section>
             </Layout>
         </>
-    )
-}
+    );
+};
 
 export default TermsAndConditionPage;

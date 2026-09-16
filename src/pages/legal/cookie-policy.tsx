@@ -1,16 +1,32 @@
 import Container from "@/components/container";
 import Layout from "@/components/layout";
 import LegalHero from "@/components/sections/legal/hero";
+import SEO from "@/components/seo";
+import { appConfig } from "@/utils/app-config";
 
 const CookiePolicyPage = () => {
 
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": `Cookie Policy | ${appConfig.name}`,
+        "description": `${appConfig.description}`,
+        "url": `${appConfig.url}/cookie-policy`
+    };
+
     return (
         <>
-
+            <SEO
+                title={`Cookie Policy | ${appConfig.name}`}
+                description={`${appConfig.description}`}
+                canonicalUrl={`/cookie-policy`}
+                ogType="website"
+                jsonLd={jsonLd}
+            />
             <Layout>
                 <LegalHero
                     title={`Cookie Policy`}
-                    description={`kkdfjkdjf`}
+                    description={`Cookie Policy | ${appConfig.name} - Legal`}
                 />
                 <section>
                     <Container className="flex flex-col lg:flex-row justify-center md:gap-10 gap-6 md:py-[60px] py-12">

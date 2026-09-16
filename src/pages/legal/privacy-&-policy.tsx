@@ -3,91 +3,136 @@ import Layout from "@/components/layout";
 import LegalHero from "@/components/sections/legal/hero";
 import SEO from "@/components/seo";
 import { appConfig } from "@/utils/app-config";
+import { ShieldCheck, Mail, AlertCircle } from "lucide-react";
 
 const PrivacyPolicyPage = () => {
-
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "WebPage",
-        "name": `Privacy & Policy | ${appConfig.name}`,
-        "description": `${appConfig.description}`,
-        "url": `${appConfig.url}/legal/privacy-&-policy`
+        "name": `Privacy Policy | ${appConfig.name}`,
+        "description": `Privacy Policy for ${appConfig.name} by SAIKHLEARN & SCHOLAR NEXUS PRIVATE LIMITED.`,
+        "url": `${appConfig.url}/privacy-policy`
     };
 
     return (
         <>
             <SEO
-                title={`Privacy & Policy | ${appConfig.name}`}
-                description={`${appConfig.description}`}
-                canonicalUrl={`/legal/privacy-&-policy`}
+                title={`Privacy Policy | ${appConfig.name}`}
+                description={`Privacy Policy for ${appConfig.name} - Learn how we collect, use, disclose, and safeguard your data.`}
+                canonicalUrl={`/privacy-policy`}
                 ogType="website"
                 jsonLd={jsonLd}
             />
             <Layout>
                 <LegalHero
-                    title={`Privacy & Policy`}
-                    description={`Privacy & Policy | Revio - Legal`}
+                    title="Privacy Policy"
+                    description="Last Updated: March 20, 2026"
                 />
-                <section>
-                    <Container className="flex flex-col lg:flex-row justify-center md:gap-10 gap-6 py-[60px]">
-                        {/* Main Content Column */}
-                        <article className="max-w-[1030px]">
-                            <p className="lead text-xl text-muted-foreground md:mb-8 mb-4">
-                                In the rapidly evolving landscape of digital commerce, payment gateways have emerged as the unsung heroes, silently powering the transactions that drive the global economy.
-                            </p>
-                            <h3 className="mb-2">The backbone of global expansion</h3>
-                            <p>
-                                Gone are the days when online transactions were clumsy and insecure. Today, modern payment gateways offer seamless, encrypted, and instant processing capabilities that have democratized access to global markets for businesses of all sizes.
-                            </p>
+                <section className="py-12 md:py-16">
+                    <Container className="flex flex-col justify-center items-center">
+                        <article className="w-full max-w-[880px] space-y-10 text-white/80 leading-relaxed text-[16px] md:text-[17px]">
+                            {/* Section 1 */}
+                            <div className="p-6 md:p-8 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-sm space-y-4">
+                                <h3 className="text-xl md:text-2xl font-bold text-white flex items-center gap-3">
+                                    <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/20 text-primary text-sm font-bold">1</span>
+                                    Introduction
+                                </h3>
+                                <p className="text-white/80">
+                                    <strong className="text-white">SAIKHLEARN & SCHOLAR NEXUS PRIVATE LIMITED</strong> (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our services.
+                                </p>
+                            </div>
 
-                            <p className="md:mb-8 mb-4">
-                                From simple credit card processing to integrating digital wallets and cryptocurrencies, the scope of what a payment gateway handles has expanded dramatically. This evolution is not just about technology; it's about customer experience.
-                            </p>
+                            {/* Section 2 */}
+                            <div className="p-6 md:p-8 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-sm space-y-4">
+                                <h3 className="text-xl md:text-2xl font-bold text-white flex items-center gap-3">
+                                    <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/20 text-primary text-sm font-bold">2</span>
+                                    Information We Collect
+                                </h3>
+                                <p className="text-white/80">
+                                    We collect information that you provide directly to us, such as when you create an account, use our services, or contact us for support. This may include:
+                                </p>
+                                <ul className="list-disc list-inside space-y-2 pl-2 text-white/70">
+                                    <li><strong className="text-white">Personal identification information:</strong> Name, email address, phone number, etc.</li>
+                                    <li><strong className="text-white">Business information:</strong> Company name, registration details</li>
+                                    <li><strong className="text-white">Financial information:</strong> Details necessary for transaction processing</li>
+                                </ul>
+                            </div>
 
-                            <h3 className="mb-2">Security: Where trust meets technology</h3>
-                            <p className="mb-4">
-                                Consumers demand speed and security. A study shows that 40% of users abandon their cart if the checkout process is too complicated. Payment gateways solve this by offering one-click checkouts and biometric authentication.
-                            </p>
+                            {/* Section 3 */}
+                            <div className="p-6 md:p-8 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-sm space-y-4">
+                                <h3 className="text-xl md:text-2xl font-bold text-white flex items-center gap-3">
+                                    <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/20 text-primary text-sm font-bold">3</span>
+                                    Use of Information
+                                </h3>
+                                <p className="text-white/80">
+                                    We use the information we collect to provide, maintain, and improve our services, process transactions, and communicate with you.
+                                </p>
+                            </div>
 
-                            <blockquote className="md:mb-8 mb-4">
-                                "The future of commerce is frictionless. Payment gateways are the oil in the engine of the digital economy."
-                            </blockquote>
+                            {/* Section 4 */}
+                            <div className="p-6 md:p-8 rounded-2xl bg-amber-500/5 border border-amber-500/20 backdrop-blur-sm space-y-4">
+                                <h3 className="text-xl md:text-2xl font-bold text-white flex items-center gap-3">
+                                    <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 text-sm font-bold">4</span>
+                                    Data Sharing with Payment Partners
+                                </h3>
+                                <div className="flex items-start gap-3 text-white/90">
+                                    <AlertCircle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
+                                    <p className="text-white/80">
+                                        <strong className="text-amber-300">Important:</strong> To process your payments securely, we share relevant transaction and personal data with our payment aggregation partner. Your data is handled in accordance with their security standards and our commitment to data protection.
+                                    </p>
+                                </div>
+                            </div>
 
-                            <h3 className="mb-2">The growth of global online payments</h3>
-                            <p className="md:mb-8 mb-4">
-                                As we move forward, AI-driven fraud detection and decentralized finance (DeFi) integrations are set to redefine the standards again. Businesses that adapt to these changes will lead the charge in the next decade of digital innovation.
-                            </p>
+                            {/* Section 5 */}
+                            <div className="p-6 md:p-8 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-sm space-y-4">
+                                <h3 className="text-xl md:text-2xl font-bold text-white flex items-center gap-3">
+                                    <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/20 text-primary text-sm font-bold">5</span>
+                                    Cookies
+                                </h3>
+                                <p className="text-white/80">
+                                    We use cookies and similar tracking technologies to track the activity on our service and hold certain information to improve your experience.
+                                </p>
+                            </div>
 
-                            <h3 className="mb-2">Greater flexibility & payment choices</h3>
-                            <p className="md:mb-8 mb-4">
-                                The modern payment gateway ecosystem offers unprecedented flexibility, allowing businesses to accept payments from multiple sources including credit cards, digital wallets, bank transfers, and emerging cryptocurrencies.
-                            </p>
+                            {/* Section 6 */}
+                            <div className="p-6 md:p-8 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-sm space-y-4">
+                                <h3 className="text-xl md:text-2xl font-bold text-white flex items-center gap-3">
+                                    <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/20 text-primary text-sm font-bold">6</span>
+                                    Security
+                                </h3>
+                                <div className="flex items-start gap-3">
+                                    <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+                                    <p className="text-white/80">
+                                        We implement industry-standard security measures, including SSL encryption, to protect your data. However, no method of transmission over the Internet is 100% secure.
+                                    </p>
+                                </div>
+                            </div>
 
-                            <h3 className="mb-2">Why flexibility matters</h3>
-                            <p className="md:mb-8 mb-4">
-                                In today's global marketplace, customers expect to pay using their preferred method. Payment gateways that offer diverse payment options see higher conversion rates and customer satisfaction.
-                            </p>
-
-                            <h3 className="mb-2">Backbone of global online transactions</h3>
-                            <p className="md:mb-8 mb-4">
-                                Payment gateways serve as the critical infrastructure that enables businesses to operate across borders, handling currency conversions, compliance, and regulatory requirements seamlessly.
-                            </p>
-
-                            <h3 className="mb-2">How payment gateways empower digital commerce</h3>
-                            <p className="md:mb-8 mb-4">
-                                By providing secure, fast, and reliable transaction processing, payment gateways remove the technical barriers that once prevented small businesses from competing on a global scale.
-                            </p>
-
-                            <h3 className="mb-2">Conclusion: The currency of innovation</h3>
-                            <p>
-                                As digital commerce continues to evolve, payment gateways will remain at the forefront of innovation, enabling new business models and transforming how we think about money and transactions in the digital age.
-                            </p>
+                            {/* Section 7 */}
+                            <div className="p-6 md:p-8 rounded-2xl bg-gradient-to-r from-blue-950/30 to-purple-950/30 border border-blue-500/20 backdrop-blur-sm space-y-4">
+                                <h3 className="text-xl md:text-2xl font-bold text-white flex items-center gap-3">
+                                    <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary/20 text-primary text-sm font-bold">7</span>
+                                    Contact Us
+                                </h3>
+                                <p className="text-white/80">
+                                    If you have any questions about this Privacy Policy, please contact us at:
+                                </p>
+                                <div className="pt-2">
+                                    <a
+                                        href="mailto:info@fivopay.com"
+                                        className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium transition-colors"
+                                    >
+                                        <Mail className="w-4 h-4" />
+                                        info@fivopay.com
+                                    </a>
+                                </div>
+                            </div>
                         </article>
                     </Container>
                 </section>
             </Layout>
         </>
-    )
-}
+    );
+};
 
 export default PrivacyPolicyPage;
