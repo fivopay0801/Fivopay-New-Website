@@ -20,7 +20,7 @@ const FeatureIntegration = () => {
                             <span className="inline-flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-r from-primary/20 to-purple-500/20 border border-primary/30 text-primary shadow-[0_0_15px_rgba(59,130,246,0.25)] shrink-0">
                                 <ArrowRight className="w-4 h-4 md:w-5 md:h-5 text-primary" />
                             </span>
-                            <span>Connected, Effortless & Control</span>
+                            <span>Connected, Effortless & Controlled</span>
                         </h2>
                     </AnimateOnView>
                     <AnimateOnView blur delay={0.2}>
