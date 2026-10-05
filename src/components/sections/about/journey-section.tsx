@@ -2,43 +2,46 @@ import Container from "@/components/container";
 import { AnimateOnView } from "@/components/ui/motion/animate-on-view";
 import { StaggerContainer } from "@/components/ui/motion/stagger";
 import { Target, Heart, Eye, Users } from "lucide-react";
-
-const values = [
-    {
-        title: "Innovation First",
-        description: "We constantly push boundaries to deliver cutting-edge financial technology solutions.",
-        icon: Target,
-    },
-    {
-        title: "Customer Centric",
-        description: "Every decision we make is guided by how it benefits our customers and their end-users.",
-        icon: Heart,
-    },
-    {
-        title: "Transparency",
-        description: "We believe in open communication, honest pricing, and clear documentation.",
-        icon: Eye,
-    },
-    {
-        title: "Collaboration",
-        description: "We work closely with our clients to understand their unique needs and challenges.",
-        icon: Users,
-    },
-];
+import { useLanguage } from "@/context/language-context";
 
 const JourneySection = () => {
+    const { t } = useLanguage();
+
+    const values = [
+        {
+            title: t.about.values.v1Title,
+            description: t.about.values.v1Desc,
+            icon: Target,
+        },
+        {
+            title: t.about.values.v2Title,
+            description: t.about.values.v2Desc,
+            icon: Heart,
+        },
+        {
+            title: t.about.values.v3Title,
+            description: t.about.values.v3Desc,
+            icon: Eye,
+        },
+        {
+            title: t.about.values.v4Title,
+            description: t.about.values.v4Desc,
+            icon: Users,
+        },
+    ];
+
     return (
         <section className="py-12 md:py-[60px]">
             <Container className="space-y-12">
                 <StaggerContainer className="text-center max-w-2xl mx-auto flex flex-col items-center">
                     <AnimateOnView blur once>
                         <h2 className="h2 mb-4">
-                            Our <span className="text-primary">Values</span>
+                            {t.about.values.title} <span className="text-primary">{t.about.values.titleGradient}</span>
                         </h2>
                     </AnimateOnView>
                     <AnimateOnView blur once delay={0.1}>
                         <p className="text-muted-foreground text-lg">
-                            The principles that guide everything we do
+                            {t.about.values.subtitle}
                         </p>
                     </AnimateOnView>
                 </StaggerContainer>

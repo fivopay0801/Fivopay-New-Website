@@ -2,54 +2,57 @@ import Container from "@/components/container";
 import { AnimateOnView } from "@/components/ui/motion/animate-on-view";
 import { StaggerContainer } from "@/components/ui/motion/stagger";
 import { Users } from "lucide-react";
-
-const teamGroups = [
-    {
-        title: "Technology Team",
-        department: "Engineering",
-        description: "50+ engineers building the future of banking",
-        icon: Users,
-    },
-    {
-        title: "Customer Success",
-        department: "Support",
-        description: "24/7 dedicated support for all clients",
-        icon: Users,
-    }
-];
-
-const stats = [
-    {
-        value: "200+",
-        label: "Institutions Served",
-    },
-    {
-        value: "50+",
-        label: "Team Members",
-    },
-    {
-        value: "5+",
-        label: "Countries",
-    },
-    {
-        value: "24/7",
-        label: "Support Available",
-    },
-];
+import { useLanguage } from "@/context/language-context";
 
 const TeamGrid = () => {
+    const { t } = useLanguage();
+
+    const teamGroups = [
+        {
+            title: t.about.team.techTitle,
+            department: t.about.team.techDept,
+            description: t.about.team.techDesc,
+            icon: Users,
+        },
+        {
+            title: t.about.team.csTitle,
+            department: t.about.team.csDept,
+            description: t.about.team.csDesc,
+            icon: Users,
+        }
+    ];
+
+    const stats = [
+        {
+            value: "200+",
+            label: t.about.team.stat1,
+        },
+        {
+            value: "50+",
+            label: t.about.team.stat2,
+        },
+        {
+            value: "5+",
+            label: t.about.team.stat3,
+        },
+        {
+            value: "24/7",
+            label: t.about.team.stat4,
+        },
+    ];
+
     return (
         <section className="py-12 md:py-[60px]">
             <Container className="space-y-16">
                 <StaggerContainer className="text-center max-w-2xl mx-auto flex flex-col items-center">
                     <AnimateOnView blur once>
                         <h2 className="h2 mb-4">
-                            Our <span className="text-gradient">Team</span>
+                            {t.about.team.title} <span className="text-gradient">{t.about.team.titleGradient}</span>
                         </h2>
                     </AnimateOnView>
                     <AnimateOnView blur once delay={0.1}>
                         <p className="text-muted-foreground text-lg">
-                            The people behind <span className="text-gradient font-semibold">FivoPay</span>'s success
+                            {t.about.team.subtitle}
                         </p>
                     </AnimateOnView>
                 </StaggerContainer>

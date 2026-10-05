@@ -3,32 +3,35 @@ import { StaggerContainer } from '@/components/ui/motion/stagger'
 import { ArrowRight, Bookmark, Building2, LayoutGrid, Zap } from 'lucide-react'
 import Container from '../../container'
 import FeatureVideo from './feature-video'
+import { useLanguage } from '@/context/language-context'
 
 import fivoPayDemoImg from '@/assets/FivopayProductDemo.png'
 
 const FutureReadyFinance = () => {
+    const { t } = useLanguage();
+
     const features = [
         {
             icon: <Building2 className="w-5 h-5 text-orange-400" />,
-            title: "Grow Wealth With Confidence",
-            description: "Access high-yield accounts and intelligent features designed to grow your money securely."
+            title: t.product.futureReady.f1Title,
+            description: t.product.futureReady.f1Desc
         },
         {
             icon: <Zap className="w-5 h-5 text-orange-400" />,
-            title: "Move Money Without Delay",
-            description: "Enjoy lightning-fast transfers and advanced encryption that protect every transaction."
+            title: t.product.futureReady.f2Title,
+            description: t.product.futureReady.f2Desc
         },
         {
             icon: <Bookmark className="w-5 h-5 text-orange-400" />,
-            title: "Understand Finances Every Week",
-            description: "Track spending trends, monitor growth patterns, and make smarter financial decisions using real-time weekly."
+            title: t.product.futureReady.f3Title,
+            description: t.product.futureReady.f3Desc
         },
         {
             icon: <LayoutGrid className="w-5 h-5 text-orange-400" />,
-            title: "Connect Everything You Need",
-            description: "Integrate FivoPay effortlessly with essential tools and apps to streamline workflows and keep finances."
+            title: t.product.futureReady.f4Title,
+            description: t.product.futureReady.f4Desc
         }
-    ]
+    ];
 
     return (
         <section className="md:py-[60px] py-12">
@@ -36,16 +39,16 @@ const FutureReadyFinance = () => {
                 <StaggerContainer className="text-center md:max-w-2xl max-w-xs mx-auto">
                     <AnimateOnView blur>
                         <h2 className="h2 md:mb-5 mb-3 flex items-center justify-center flex-wrap gap-2 md:gap-3.5">
-                            <span className="text-gradient font-bold">Finance</span>
+                            <span className="text-gradient font-bold">{t.product.futureReady.titleFinance}</span>
                             <span className="inline-flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-r from-primary/20 to-purple-500/20 border border-primary/30 text-primary shadow-[0_0_15px_rgba(59,130,246,0.25)] shrink-0">
                                 <ArrowRight className="w-4 h-4 md:w-5 md:h-5 text-primary" />
                             </span>
-                            <span>Future Ready</span>
+                            <span>{t.product.futureReady.titleFutureReady}</span>
                         </h2>
                     </AnimateOnView>
                     <AnimateOnView blur delay={0.2}>
                         <p className="text-muted-foreground">
-                            With <span className="text-gradient font-semibold">FivoPay</span>, you're not just banking—you're building the future of your finances.
+                            {t.product.futureReady.subtitleStart} <span className="text-gradient font-semibold">FivoPay</span>{t.product.futureReady.subtitleEnd}
                         </p>
                     </AnimateOnView>
                 </StaggerContainer>

@@ -12,8 +12,11 @@ import FeatureTicker from "@/components/ui/feature-ticker";
 import { AnimateOnView } from "@/components/ui/motion/animate-on-view";
 import { StaggerContainer } from "@/components/ui/motion/stagger";
 import Lottie from "lottie-react";
+import { useLanguage } from "@/context/language-context";
 
 const FeatureHero = () => {
+    const { t } = useLanguage();
+
     return (
         <section className="relative overflow-hidden hero-padding-top pb-12 md:pb-20 md:space-y-[113px] space-y-8">
             <Container className="relative z-10">
@@ -26,13 +29,13 @@ const FeatureHero = () => {
                 <StaggerContainer className="flex flex-col items-center text-center max-w-[710px] mx-auto">
                     <AnimateOnView once blur>
                         <h1 className="h1 mb-5">
-                            Explore the reality of finance management
+                            {t.product.hero.title}
                         </h1>
                     </AnimateOnView>
 
                     <AnimateOnView once blur delay={0.1}>
                         <p className="text-lg text-muted-foreground">
-                            Say goodbye to complexity and hello to simplicity as <span className="text-gradient font-semibold">FivoPay</span> transforms the way you manage your finance.
+                            {t.product.hero.subtitleStart} <span className="text-gradient font-semibold">FivoPay</span> {t.product.hero.subtitleEnd}
                         </p>
                     </AnimateOnView>
                 </StaggerContainer>

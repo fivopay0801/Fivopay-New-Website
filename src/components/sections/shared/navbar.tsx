@@ -6,36 +6,39 @@ import React from "react";
 
 import Container from "@/components/container";
 import { Button } from "@/components/ui/button";
-import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "@/components/ui/navigation-menu";
+import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from "@/components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Link } from "react-router-dom";
 import logo from "@/assets/Fivopay.png";
-
-const pages = [
-  {
-    name: "Home",
-    href: "/"
-  },
-  {
-    name: "About",
-    href: "/about"
-  },
-  {
-    name: "Products",
-    href: "/product"
-  },
-  {
-    name: "Pricing",
-    href: "/pricing"
-  },
-  {
-    name: "Contact",
-    href: "/contact"
-  }
-];
+import { useLanguage } from "@/context/language-context";
+import { LanguageSwitcher } from "@/components/ui/language-switcher";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
+  const { t } = useLanguage();
+
+  const pages = [
+    {
+      name: t.nav.home,
+      href: "/"
+    },
+    {
+      name: t.nav.products,
+      href: "/product"
+    },
+    {
+      name: t.nav.about,
+      href: "/about"
+    },
+    {
+      name: t.nav.pricing,
+      href: "/pricing"
+    },
+    {
+      name: t.nav.contact,
+      href: "/contact"
+    }
+  ];
 
   return (
     <header className="w-full md:top-6 top-4 mx-auto absolute z-40 px-4">
@@ -46,6 +49,7 @@ const Navbar = () => {
 
         {/* <!-- Mobile --> */}
         <div className="flex items-center gap-2 lg:hidden">
+          <LanguageSwitcher variant="navbar" className="px-2.5 py-1 text-xs" />
           <Sheet
             open={isOpen}
             onOpenChange={setIsOpen}>
@@ -93,6 +97,20 @@ const Navbar = () => {
                       </Link>
                     ))}
                   </div>
+
+                  <div className="mt-8 pt-6 border-t border-white/10 space-y-4">
+                    <div className="space-y-2">
+                      <span className="text-xs text-white/50 uppercase tracking-wider font-semibold">
+                        {t.nav.language}
+                      </span>
+                      <LanguageSwitcher variant="mobile" />
+                    </div>
+                    <Button asChild className="w-full rounded-full py-3 h-auto">
+                      <Link to="/contact" onClick={() => setIsOpen(false)}>
+                        {t.nav.getStarted}
+                      </Link>
+                    </Button>
+                  </div>
                 </div>
               </div>
             </SheetContent>
@@ -102,54 +120,25 @@ const Navbar = () => {
         {/* <!-- Desktop --> */}
         <NavigationMenu className="hidden lg:block mx-auto flex-1">
           <NavigationMenuList className="gap-2 xl:gap-3">
-            <NavigationMenuItem>
-              <NavigationMenuLink asChild>
-                <Link to="/" className="px-4 py-2 text-[17px] md:text-[18px] font-semibold text-slate-800 hover:text-primary transition-colors">
-                  Home
-                </Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <NavigationMenuLink asChild>
-                <Link to="/product" className="px-4 py-2 text-[17px] md:text-[18px] font-semibold text-slate-800 hover:text-primary transition-colors">
-                  Products
-                </Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <NavigationMenuLink asChild>
-                <Link to="/about" className="px-4 py-2 text-[17px] md:text-[18px] font-semibold text-slate-800 hover:text-primary transition-colors">
-                  About
-                </Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <NavigationMenuLink asChild>
-                <Link to="/pricing" className="px-4 py-2 text-[17px] md:text-[18px] font-semibold text-slate-800 hover:text-primary transition-colors">
-                  Pricing
-                </Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <NavigationMenuLink asChild>
-                <Link to="/contact" className="px-4 py-2 text-[17px] md:text-[18px] font-semibold text-slate-800 hover:text-primary transition-colors">
-                  Contact
-                </Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
+            {pages.map((page) => (
+              <NavigationMenuItem key={page.href}>
+                <NavigationMenuLink asChild>
+                  <Link to={page.href} className="px-4 py-2 text-[17px] md:text-[18px] font-semibold text-slate-800 hover:text-primary transition-colors">
+                    {page.name}
+                  </Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+            ))}
           </NavigationMenuList>
         </NavigationMenu>
 
-        <div className="hidden lg:flex gap-2 items-center w-fit shrink-0 justify-end">
+        <div className="hidden lg:flex gap-3 items-center w-fit shrink-0 justify-end">
+          <LanguageSwitcher variant="navbar" />
           <Button
             asChild
             className="relative overflow-hidden group bg-gradient-to-b from-slate-800 to-slate-900 hover:from-slate-700 hover:to-slate-850 text-white font-medium text-[16px] px-6 py-2.5 h-auto rounded-full border-t border-white/20 shadow-[0_2px_8px_rgba(0,0,0,0.15),0_1px_2px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.15)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_4px_14px_rgba(0,0,0,0.22),inset_0_1px_0_rgba(255,255,255,0.2)] active:translate-y-[1px] active:shadow-[0_1px_3px_rgba(0,0,0,0.12)] cursor-pointer"
           >
-            <Link to="/contact">Get Started</Link>
+            <Link to="/contact">{t.nav.getStarted}</Link>
           </Button>
         </div>
       </Container>

@@ -20,182 +20,7 @@ import {
 } from "lucide-react";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
-// Helper to truncate/combine items for the card description
-const formatDesc = (items: string[]) => {
-  return items.slice(0, 3).join(", ") + (items.length > 3 ? " & more" : "");
-};
-
-const allModules = [
-  {
-    id: 1,
-    title: "Core Banking",
-    icon: Building,
-    desc: "Accounts, Deposits, Interest & Branch Management",
-    color: "from-green-500/20 to-green-900/40",
-    iconColor: "text-green-400",
-    borderColor: "border-green-500/30",
-  },
-  {
-    id: 2,
-    title: "Loan Management",
-    icon: Banknote,
-    desc: "Origination, EMI, NPA & Recovery",
-    color: "from-emerald-500/20 to-emerald-900/40",
-    iconColor: "text-emerald-400",
-    borderColor: "border-emerald-500/30",
-  },
-  {
-    id: 3,
-    title: "Deposit Management",
-    icon: PiggyBank,
-    desc: "RD, FD, Interest Payout & Renewals",
-    color: "from-blue-500/20 to-blue-900/40",
-    iconColor: "text-blue-400",
-    borderColor: "border-blue-500/30",
-  },
-  {
-    id: 4,
-    title: "Collections",
-    icon: HandCoins,
-    desc: "EMI, DSA, Receipts & Follow-ups",
-    color: "from-indigo-500/20 to-indigo-900/40",
-    iconColor: "text-indigo-400",
-    borderColor: "border-indigo-500/30",
-  },
-  {
-    id: 5,
-    title: "Member Management",
-    icon: Users,
-    desc: "Onboarding, KYC, Profiles & Communication",
-    color: "from-orange-500/20 to-orange-900/40",
-    iconColor: "text-orange-400",
-    borderColor: "border-orange-500/30",
-  },
-  {
-    id: 6,
-    title: "Accounting & Finance",
-    icon: Calculator,
-    desc: "Journals, P&L, Balance Sheet & Reports",
-    color: "from-red-500/20 to-red-900/40",
-    iconColor: "text-red-400",
-    borderColor: "border-red-500/30",
-  },
-  {
-    id: 7,
-    title: "Payment & Collections",
-    icon: CreditCard,
-    desc: "UPI, NEFT, RTGS, Bulk & Reconciliation",
-    color: "from-blue-600/20 to-blue-900/40",
-    iconColor: "text-blue-500",
-    borderColor: "border-blue-600/30",
-  },
-  {
-    id: 8,
-    title: "E-NACH & Autopay",
-    icon: RefreshCw,
-    desc: "Mandates, Auto Debit & NACH Reports",
-    color: "from-cyan-500/20 to-cyan-900/40",
-    iconColor: "text-cyan-400",
-    borderColor: "border-cyan-500/30",
-  },
-  {
-    id: 9,
-    title: "Document & eServices",
-    icon: FileText,
-    desc: "eStamping, eSign, Vault & Video KYC",
-    color: "from-sky-500/20 to-sky-900/40",
-    iconColor: "text-sky-400",
-    borderColor: "border-sky-500/30",
-  },
-  {
-    id: 10,
-    title: "Communication",
-    icon: MessageSquare,
-    desc: "SMS, Emails, WhatsApp & Push Alerts",
-    color: "from-purple-500/20 to-purple-900/40",
-    iconColor: "text-purple-400",
-    borderColor: "border-purple-500/30",
-  },
-  {
-    id: 11,
-    title: "Reports & Analytics",
-    icon: TrendingUp,
-    desc: "MIS, Branch Performance, NPA & Custom Reports",
-    color: "from-pink-500/20 to-pink-900/40",
-    iconColor: "text-pink-400",
-    borderColor: "border-pink-500/30",
-  },
-  {
-    id: 12,
-    title: "Compliance & Risk",
-    icon: ShieldCheck,
-    desc: "AML, Sanctions, Risk Grading & Audit Trails",
-    color: "from-rose-500/20 to-rose-900/40",
-    iconColor: "text-rose-400",
-    borderColor: "border-rose-500/30",
-  },
-  {
-    id: 13,
-    title: "AI Companion",
-    icon: Bot,
-    desc: "AI Assistant, Query Support & Business Intel",
-    color: "from-emerald-400/20 to-emerald-900/40",
-    iconColor: "text-emerald-400",
-    borderColor: "border-emerald-400/30",
-  },
-  {
-    id: 14,
-    title: "Ethical Banking",
-    icon: Scale,
-    desc: "Ethical Contracts, Profit Sharing & Oversight",
-    color: "from-green-600/20 to-green-900/40",
-    iconColor: "text-green-500",
-    borderColor: "border-green-600/30",
-  },
-  {
-    id: 15,
-    title: "HR & Admin",
-    icon: Briefcase,
-    desc: "Employees, Attendance, Payroll & Access",
-    color: "from-blue-500/20 to-blue-900/40",
-    iconColor: "text-blue-500",
-    borderColor: "border-blue-500/30",
-  },
-  {
-    id: 16,
-    title: "Audit & Control",
-    icon: ClipboardList,
-    desc: "Internal/External Audit, Logs & Workflows",
-    color: "from-indigo-600/20 to-indigo-900/40",
-    iconColor: "text-indigo-500",
-    borderColor: "border-indigo-600/30",
-  },
-  {
-    id: 17,
-    title: "Fixed Assets",
-    icon: Building2,
-    desc: "Registration, Depreciation & Asset Transfers",
-    color: "from-violet-500/20 to-violet-900/40",
-    iconColor: "text-violet-400",
-    borderColor: "border-violet-500/30",
-  },
-  {
-    id: 18,
-    title: "Settings & Master",
-    icon: Settings,
-    desc: "Product Master, Charges, Branches & System Config",
-    color: "from-orange-600/20 to-orange-900/40",
-    iconColor: "text-orange-500",
-    borderColor: "border-orange-600/30",
-  },
-];
-
-const tabs = [
-  { id: "operations", label: "Banking Operations", items: allModules.slice(0, 6) },
-  { id: "services", label: "Services & Compliance", items: allModules.slice(6, 12) },
-  { id: "admin", label: "Admin & Control", items: allModules.slice(12, 18) },
-];
+import { useLanguage } from "@/context/language-context";
 
 const ModuleCard = ({ module, align = "left", delay = 0 }: { module: any, align?: "left" | "right", delay: number }) => {
   const Icon = module.icon;
@@ -233,7 +58,7 @@ const ModuleCard = ({ module, align = "left", delay = 0 }: { module: any, align?
   );
 };
 
-const OrbitHub = () => {
+const OrbitHub = ({ subtitle }: { subtitle: string }) => {
   return (
     <div className="relative w-[280px] h-[280px] lg:w-[400px] lg:h-[400px] flex items-center justify-center shrink-0 mx-auto">
       {/* Outer Dashed Rotating Ring */}
@@ -264,7 +89,7 @@ const OrbitHub = () => {
           <span className="text-gradient drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]">FIVOPAY</span>
         </h3>
         <p className="text-sm lg:text-base font-medium text-white/70 tracking-widest uppercase">
-          Banking<br/>Excellence
+          {subtitle}
         </p>
       </div>
 
@@ -285,9 +110,182 @@ const OrbitHub = () => {
   );
 };
 
-
 const CoreModules = () => {
-  const [activeTab, setActiveTab] = useState(tabs[0]);
+  const { t } = useLanguage();
+  const [activeTabId, setActiveTabId] = useState("operations");
+
+  const allModules = [
+    {
+      id: 1,
+      title: t.home.coreModules.m1Title,
+      icon: Building,
+      desc: t.home.coreModules.m1Desc,
+      color: "from-green-500/20 to-green-900/40",
+      iconColor: "text-green-400",
+      borderColor: "border-green-500/30",
+    },
+    {
+      id: 2,
+      title: t.home.coreModules.m2Title,
+      icon: Banknote,
+      desc: t.home.coreModules.m2Desc,
+      color: "from-emerald-500/20 to-emerald-900/40",
+      iconColor: "text-emerald-400",
+      borderColor: "border-emerald-500/30",
+    },
+    {
+      id: 3,
+      title: t.home.coreModules.m3Title,
+      icon: PiggyBank,
+      desc: t.home.coreModules.m3Desc,
+      color: "from-blue-500/20 to-blue-900/40",
+      iconColor: "text-blue-400",
+      borderColor: "border-blue-500/30",
+    },
+    {
+      id: 4,
+      title: t.home.coreModules.m4Title,
+      icon: HandCoins,
+      desc: t.home.coreModules.m4Desc,
+      color: "from-indigo-500/20 to-indigo-900/40",
+      iconColor: "text-indigo-400",
+      borderColor: "border-indigo-500/30",
+    },
+    {
+      id: 5,
+      title: t.home.coreModules.m5Title,
+      icon: Users,
+      desc: t.home.coreModules.m5Desc,
+      color: "from-orange-500/20 to-orange-900/40",
+      iconColor: "text-orange-400",
+      borderColor: "border-orange-500/30",
+    },
+    {
+      id: 6,
+      title: t.home.coreModules.m6Title,
+      icon: Calculator,
+      desc: t.home.coreModules.m6Desc,
+      color: "from-red-500/20 to-red-900/40",
+      iconColor: "text-red-400",
+      borderColor: "border-red-500/30",
+    },
+    {
+      id: 7,
+      title: t.home.coreModules.m7Title,
+      icon: CreditCard,
+      desc: t.home.coreModules.m7Desc,
+      color: "from-blue-600/20 to-blue-900/40",
+      iconColor: "text-blue-500",
+      borderColor: "border-blue-600/30",
+    },
+    {
+      id: 8,
+      title: t.home.coreModules.m8Title,
+      icon: RefreshCw,
+      desc: t.home.coreModules.m8Desc,
+      color: "from-cyan-500/20 to-cyan-900/40",
+      iconColor: "text-cyan-400",
+      borderColor: "border-cyan-500/30",
+    },
+    {
+      id: 9,
+      title: t.home.coreModules.m9Title,
+      icon: FileText,
+      desc: t.home.coreModules.m9Desc,
+      color: "from-sky-500/20 to-sky-900/40",
+      iconColor: "text-sky-400",
+      borderColor: "border-sky-500/30",
+    },
+    {
+      id: 10,
+      title: t.home.coreModules.m10Title,
+      icon: MessageSquare,
+      desc: t.home.coreModules.m10Desc,
+      color: "from-purple-500/20 to-purple-900/40",
+      iconColor: "text-purple-400",
+      borderColor: "border-purple-500/30",
+    },
+    {
+      id: 11,
+      title: t.home.coreModules.m11Title,
+      icon: TrendingUp,
+      desc: t.home.coreModules.m11Desc,
+      color: "from-pink-500/20 to-pink-900/40",
+      iconColor: "text-pink-400",
+      borderColor: "border-pink-500/30",
+    },
+    {
+      id: 12,
+      title: t.home.coreModules.m12Title,
+      icon: ShieldCheck,
+      desc: t.home.coreModules.m12Desc,
+      color: "from-rose-500/20 to-rose-900/40",
+      iconColor: "text-rose-400",
+      borderColor: "border-rose-500/30",
+    },
+    {
+      id: 13,
+      title: t.home.coreModules.m13Title,
+      icon: Bot,
+      desc: t.home.coreModules.m13Desc,
+      color: "from-emerald-400/20 to-emerald-900/40",
+      iconColor: "text-emerald-400",
+      borderColor: "border-emerald-400/30",
+    },
+    {
+      id: 14,
+      title: t.home.coreModules.m14Title,
+      icon: Scale,
+      desc: t.home.coreModules.m14Desc,
+      color: "from-green-600/20 to-green-900/40",
+      iconColor: "text-green-500",
+      borderColor: "border-green-600/30",
+    },
+    {
+      id: 15,
+      title: t.home.coreModules.m15Title,
+      icon: Briefcase,
+      desc: t.home.coreModules.m15Desc,
+      color: "from-blue-500/20 to-blue-900/40",
+      iconColor: "text-blue-500",
+      borderColor: "border-blue-500/30",
+    },
+    {
+      id: 16,
+      title: t.home.coreModules.m16Title,
+      icon: ClipboardList,
+      desc: t.home.coreModules.m16Desc,
+      color: "from-indigo-600/20 to-indigo-900/40",
+      iconColor: "text-indigo-500",
+      borderColor: "border-indigo-600/30",
+    },
+    {
+      id: 17,
+      title: t.home.coreModules.m17Title,
+      icon: Building2,
+      desc: t.home.coreModules.m17Desc,
+      color: "from-violet-500/20 to-violet-900/40",
+      iconColor: "text-violet-400",
+      borderColor: "border-violet-500/30",
+    },
+    {
+      id: 18,
+      title: t.home.coreModules.m18Title,
+      icon: Settings,
+      desc: t.home.coreModules.m18Desc,
+      color: "from-orange-600/20 to-orange-900/40",
+      iconColor: "text-orange-500",
+      borderColor: "border-orange-600/30",
+    },
+  ];
+
+  const tabs = [
+    { id: "operations", label: t.home.coreModules.tabOperations, items: allModules.slice(0, 6) },
+    { id: "services", label: t.home.coreModules.tabServices, items: allModules.slice(6, 12) },
+    { id: "admin", label: t.home.coreModules.tabAdmin, items: allModules.slice(12, 18) },
+  ];
+
+  const activeTab = tabs.find((tab) => tab.id === activeTabId) || tabs[0];
 
   return (
     <section className="py-24 bg-background relative overflow-hidden" id="core-modules">
@@ -303,7 +301,7 @@ const CoreModules = () => {
             return (
               <button
                 key={tab.id}
-                onClick={() => setActiveTab(tab)}
+                onClick={() => setActiveTabId(tab.id)}
                 className={`relative px-6 py-3 rounded-full text-sm lg:text-base font-semibold transition-all duration-300 ${
                   isActive ? "text-white" : "text-muted-foreground hover:text-white hover:bg-white/5"
                 }`}
@@ -335,7 +333,7 @@ const CoreModules = () => {
             </motion.div>
           </AnimatePresence>
 
-          <OrbitHub />
+          <OrbitHub subtitle={t.home.coreModules.centerSub} />
 
           <AnimatePresence mode="wait">
             <motion.div

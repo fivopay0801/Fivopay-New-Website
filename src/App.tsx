@@ -16,14 +16,17 @@ import CookiePolicyPage from "./pages/legal/cookie-policy";
 import RefundPolicyPage from "./pages/legal/refund-policy";
 import ServiceFulfillmentPage from "./pages/legal/service-fulfillment";
 
+import { LanguageProvider } from "@/context/language-context";
+
 const queryClient = new QueryClient();
 
 const App = () => (
   <HelmetProvider>
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <BrowserRouter>
-          <AuthProvider>
+        <LanguageProvider>
+          <BrowserRouter>
+            <AuthProvider>
             <Toaster />
             <Sonner />
             <Routes>
@@ -50,7 +53,8 @@ const App = () => (
             </Routes>
           </AuthProvider>
         </BrowserRouter>
-      </TooltipProvider>
+      </LanguageProvider>
+    </TooltipProvider>
     </QueryClientProvider>
   </HelmetProvider>
 );

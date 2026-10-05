@@ -5,8 +5,11 @@ import { AnimateOnView } from "@/components/ui/motion/animate-on-view";
 import { StaggerContainer } from "@/components/ui/motion/stagger";
 import Lottie from "lottie-react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "@/context/language-context";
 
 const CTA = () => {
+    const { t } = useLanguage();
+
     return (
         <section className="relative overflow-hidden pt-20 md:pt-32">
             {/* Background Gradient similar to design (dark with subtle glow) */}
@@ -21,7 +24,7 @@ const CTA = () => {
                         <h2
                             className="h2 md:mb-5 mb-3"
                         >
-                            Apply in under 10 minutes today!
+                            {t.cta.title}
                         </h2>
                     </AnimateOnView>
                     <AnimateOnView
@@ -31,13 +34,13 @@ const CTA = () => {
                         <p
                             className='text-muted-foreground md:mb-10 mb-5'
                         >
-                            Join over 1,000 businesses already benefiting from <span className="text-gradient font-semibold">FivoPay</span>.
+                            {t.cta.subtitlePart1} <span className="text-gradient font-semibold">FivoPay</span>.
                         </p>
                     </AnimateOnView>
                     <AnimateOnView>
                         <Button asChild>
                             <Link to="/contact">
-                                Get Started Now
+                                {t.cta.button}
                             </Link>
                         </Button>
                     </AnimateOnView>

@@ -4,150 +4,65 @@ import Container from '../../container'
 import { Button } from '@/components/ui/button'
 import { CheckCircle2, Info } from 'lucide-react'
 import { Link } from 'react-router-dom'
-
-const pricingTiers = [
-  {
-    id: 'silver',
-    name: 'SILVER',
-    description: 'Perfect for small & medium cooperatives starting their digital journey.',
-    price: 'Custom',
-    period: '',
-    tag: 'User Based Access',
-    color: 'from-slate-400 to-slate-500',
-    headerBg: 'bg-slate-500/10',
-    borderColor: 'border-slate-500/20',
-    serviceExperience: [
-      'Standard Support',
-      'Email & WhatsApp Support',
-      'Response Time: 24-48 Hours',
-      'Resolution Time: 48-72 Hours',
-      'Regular Updates',
-      'Uptime: 99%',
-    ],
-  },
-  {
-    id: 'gold',
-    name: 'GOLD',
-    description: 'Ideal for growing cooperatives with expanding operations.',
-    price: 'Custom',
-    period: '',
-    tag: 'User Based Access',
-    color: 'from-yellow-400 to-yellow-600',
-    headerBg: 'bg-yellow-500/10',
-    borderColor: 'border-yellow-500/30',
-    isPopular: true,
-    serviceExperience: [
-      'Priority Support',
-      'Email, WhatsApp & Call Support',
-      'Response Time: 6-12 Hours',
-      'Resolution Time: 24-48 Hours',
-      'Priority Updates',
-      'Uptime: 99.5%',
-    ],
-  },
-  {
-    id: 'platinum',
-    name: 'PLATINUM',
-    description: 'Best for large cooperatives, federations & state/national level institutions.',
-    price: 'Custom',
-    period: '',
-    tag: 'User Based Access',
-    color: 'from-purple-500 to-purple-600',
-    headerBg: 'bg-purple-500/10',
-    borderColor: 'border-purple-500/20',
-    serviceExperience: [
-      'Premium Support (Dedicated)',
-      'Email, WhatsApp, Call & Ticket Support',
-      'Response Time: 2-6 Hours',
-      'Resolution Time: 12-24 Hours',
-      'Dedicated Account Manager',
-      'Uptime: 99.9%',
-    ],
-  },
-]
-
-const comparisonRows = [
-  {
-    feature: 'Ideal For',
-    silver: 'Small Cooperatives, PACS, Employee Credit Societies',
-    gold: 'Multi-Branch Cooperatives, MSCS, Growing Institutions',
-    platinum: 'Cooperative Banks, Large MSCS, Federations',
-  },
-  {
-    feature: 'Number of Branches',
-    silver: 'Up to 5 Branches',
-    gold: 'Up to 25 Branches',
-    platinum: '25+ Branches (Custom)',
-  },
-  {
-    feature: 'Active Management Users (Cap)',
-    silver: 'Up to 10 Users',
-    gold: 'Up to 50 Users',
-    platinum: 'Custom (Unlimited*)',
-  },
-  {
-    feature: 'Agents / DSA (Cap)',
-    silver: 'Up to 50 Agents',
-    gold: 'Up to 250 Agents',
-    platinum: 'Custom (Unlimited*)',
-  },
-  {
-    feature: 'Support Channels',
-    silver: 'Email, WhatsApp',
-    gold: 'Email, WhatsApp, Call',
-    platinum: 'Email, WhatsApp, Call, Ticket Portal',
-  },
-  {
-    feature: 'Account Manager',
-    silver: '-',
-    gold: 'Shared Account Manager',
-    platinum: 'Dedicated Account Manager',
-  },
-  {
-    feature: 'Implementation Priority',
-    silver: 'Standard',
-    gold: 'Priority',
-    platinum: 'Dedicated Priority',
-  },
-  {
-    feature: 'SLA Commitment',
-    silver: 'Standard SLA',
-    gold: 'Enhanced SLA',
-    platinum: 'Premium SLA',
-  },
-  {
-    feature: 'Data Migration',
-    silver: 'Standard Queue',
-    gold: 'Priority Queue',
-    platinum: 'Dedicated Migration Team',
-  },
-  {
-    feature: 'Customization Requests',
-    silver: 'Standard',
-    gold: 'Priority',
-    platinum: 'Dedicated',
-  },
-  {
-    feature: 'Training & Onboarding',
-    silver: 'Standard Training',
-    gold: 'Advanced Training',
-    platinum: 'Dedicated Training & Onboarding',
-  },
-]
+import { useLanguage } from '@/context/language-context'
 
 const Pricing = () => {
+  const { t } = useLanguage();
+
+  const pricingTiers = [
+    {
+      id: 'silver',
+      name: 'SILVER',
+      description: t.home.pricing.silverDesc,
+      price: t.home.pricing.custom,
+      period: '',
+      tag: t.home.pricing.userBasedAccess,
+      color: 'from-slate-400 to-slate-500',
+      headerBg: 'bg-slate-500/10',
+      borderColor: 'border-slate-500/20',
+      serviceExperience: t.home.pricing.silverFeatures,
+    },
+    {
+      id: 'gold',
+      name: 'GOLD',
+      description: t.home.pricing.goldDesc,
+      price: t.home.pricing.custom,
+      period: '',
+      tag: t.home.pricing.userBasedAccess,
+      color: 'from-yellow-400 to-yellow-600',
+      headerBg: 'bg-yellow-500/10',
+      borderColor: 'border-yellow-500/30',
+      isPopular: true,
+      serviceExperience: t.home.pricing.goldFeatures,
+    },
+    {
+      id: 'platinum',
+      name: 'PLATINUM',
+      description: t.home.pricing.platinumDesc,
+      price: t.home.pricing.custom,
+      period: '',
+      tag: t.home.pricing.userBasedAccess,
+      color: 'from-purple-500 to-purple-600',
+      headerBg: 'bg-purple-500/10',
+      borderColor: 'border-purple-500/20',
+      serviceExperience: t.home.pricing.platinumFeatures,
+    },
+  ];
+
+  const comparisonRows = t.home.pricing.tableRows;
+
   return (
     <section className="py-12 md:py-[80px]">
       <Container className="space-y-16">
         <StaggerContainer className="text-center max-w-2xl mx-auto flex flex-col items-center">
           <AnimateOnView blur once>
             <h2 className="h2 mb-4">
-              Transparent <span className="text-primary">Pricing</span>
+              {t.home.pricing.title} <span className="text-primary">{t.home.pricing.titleGradient}</span>
             </h2>
           </AnimateOnView>
           <AnimateOnView blur delay={0.1} once>
             <p className="text-muted-foreground text-lg">
-              Choose the service level that matches your scale and support expectations.
+              {t.home.pricing.subtitle}
             </p>
           </AnimateOnView>
         </StaggerContainer>
@@ -166,7 +81,7 @@ const Pricing = () => {
 
                 {tier.isPopular && (
                   <div className="absolute top-0 right-1/2 translate-x-1/2 bg-yellow-500 text-black text-[10px] font-bold px-3 py-1 rounded-b-lg uppercase tracking-wider z-10">
-                    Most Popular
+                    {t.home.pricing.mostPopular}
                   </div>
                 )}
 
@@ -188,14 +103,14 @@ const Pricing = () => {
                   </div>
 
                   <Button asChild className="w-full font-semibold" variant={tier.isPopular ? "default" : "secondary"}>
-                    <Link to="/contact">Get Started</Link>
+                    <Link to="/contact">{t.home.pricing.getStarted}</Link>
                   </Button>
                 </div>
 
                 <div className="p-8 flex-1 flex flex-col">
                   <div className="flex items-center justify-center gap-2 mb-6">
                     <h4 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground text-center">
-                      Service Experience
+                      {t.home.pricing.serviceExperience}
                     </h4>
                   </div>
                   
@@ -218,7 +133,7 @@ const Pricing = () => {
           <table className="w-full text-left text-sm whitespace-nowrap">
             <thead>
               <tr className="border-b border-border bg-white/5">
-                <th className="p-4 font-semibold text-white/90">Features Comparison</th>
+                <th className="p-4 font-semibold text-white/90">{t.home.pricing.featuresComparison}</th>
                 <th className="p-4 font-bold text-center text-slate-300 w-1/4">SILVER</th>
                 <th className="p-4 font-bold text-center text-yellow-500 w-1/4">GOLD</th>
                 <th className="p-4 font-bold text-center text-purple-400 w-1/4">PLATINUM</th>
@@ -243,10 +158,10 @@ const Pricing = () => {
         {/* Bottom Banner */}
         <AnimateOnView className="bg-primary/10 border border-primary/20 rounded-2xl p-6 text-center">
           <p className="text-primary font-medium text-sm md:text-base">
-            All packages include access to <span className="font-bold text-white">all modules, features, updates, integrations & innovations.</span>
+            {t.home.pricing.bannerText} <span className="font-bold text-white">{t.home.pricing.bannerHighlight}</span>
           </p>
           <p className="text-muted-foreground text-xs md:text-sm mt-1">
-            You choose the service level that matches your scale and support expectations.
+            {t.home.pricing.bannerSub}
           </p>
         </AnimateOnView>
 

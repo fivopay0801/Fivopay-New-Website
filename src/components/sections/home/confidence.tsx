@@ -5,8 +5,11 @@ import { StaggerContainer } from '@/components/ui/motion/stagger'
 import Lottie from 'lottie-react'
 import { Link } from 'react-router-dom'
 import Container from '../../container'
+import { useLanguage } from '@/context/language-context'
 
 const Confidence = () => {
+  const { t } = useLanguage();
+
   return (
     <section
       className="relative bg-background overflow-hidden lg:pt-[218px] lg:pb-[291px] md:pt-[60px] md:pb-[60px] pt-12 pb-12">
@@ -34,7 +37,7 @@ const Confidence = () => {
             <h2
               className="h2 md:mb-5 mb-3"
             >
-              Who Says a Banking Platform Can't Blow Mind?
+              {t.home.confidence.title}
             </h2>
           </AnimateOnView>
           <AnimateOnView
@@ -44,12 +47,13 @@ const Confidence = () => {
             <p
               className='text-muted-foreground md:mb-10 mb-5'
             >
-              Experience a banking platform built with genuine care. We're here to support you at every step of your journey, going beyond just finances.            </p>
+              {t.home.confidence.desc}
+            </p>
           </AnimateOnView>
           <AnimateOnView>
             <Button asChild>
               <Link to="/contact">
-                Get Started
+                {t.home.confidence.button}
               </Link>
             </Button>
           </AnimateOnView>

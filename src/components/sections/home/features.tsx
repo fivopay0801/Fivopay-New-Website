@@ -20,12 +20,10 @@ import {
   FeatureCardOverlay,
   FeatureCardTitle
 } from '../../ui/feature-card'
+import { useLanguage } from '@/context/language-context'
 
-const cards = [
-  {
-    id: 5,
-    title: "FivoLink",
-    description: "FivoLink is your all-in-one business shopping and management platform designed to simplify the way you buy, manage, and grow your business.",
+const cardDataMap: Record<number, { imageSrc: string; imageAlt: string; overlayData: any; overlayPosition: "bottom-left" }> = {
+  5: {
     imageSrc: fivoLinkImg,
     imageAlt: "FivoLink business platform",
     overlayData: {
@@ -33,12 +31,9 @@ const cards = [
       alt: "Business shopping and management",
       className: "aspect-[203/188] w-full max-w-[203px]"
     },
-    overlayPosition: "bottom-left" as const
+    overlayPosition: "bottom-left"
   },
-  {
-    id: 6,
-    title: "Fivo Union",
-    description: "Fivo Union is a unified digital platform that allows devotees to donate seamlessly and securely.",
+  6: {
     imageSrc: fivoUnionImg,
     imageAlt: "Fivo Union donation platform",
     overlayData: {
@@ -46,12 +41,9 @@ const cards = [
       alt: "Donation and payment metrics",
       className: "aspect-[244/130] w-full max-w-[244px]"
     },
-    overlayPosition: "bottom-left" as const
+    overlayPosition: "bottom-left"
   },
-  {
-    id: 7,
-    title: "Mudrox",
-    description: "Mudrox is our premier Escrow platform where buyers and sellers can make trustworthy deals with complete financial protection.",
+  7: {
     imageSrc: mudroxImg,
     imageAlt: "Mudrox Escrow platform",
     overlayData: {
@@ -59,12 +51,9 @@ const cards = [
       alt: "Escrow deal statistics",
       className: "aspect-[173/180] w-full max-w-[173px]"
     },
-    overlayPosition: "bottom-left" as const
+    overlayPosition: "bottom-left"
   },
-  {
-    id: 1,
-    title: "Cooperative Management",
-    description: "Complete financial cooperative society management with member services, share management, dividend distribution and full loan processing.",
+  1: {
     imageSrc: cooperativeImg,
     imageAlt: "Cooperative society management dashboard",
     overlayData: {
@@ -72,12 +61,9 @@ const cards = [
       alt: "Member and share management statistics",
       className: "aspect-[203/188] w-full max-w-[203px]"
     },
-    overlayPosition: "bottom-left" as const
+    overlayPosition: "bottom-left"
   },
-  {
-    id: 2,
-    title: "Ethical Banking",
-    description: "Ethical banking with profit-sharing accounts, Qard Hasan loans, automated Zakat calculation and compliance monitoring.",
+  2: {
     imageSrc: ethicalImg,
     imageAlt: "Ethical banking platform",
     overlayData: {
@@ -85,12 +71,9 @@ const cards = [
       alt: "Profit sharing and Zakat automation",
       className: "aspect-[244/130] w-full max-w-[244px]"
     },
-    overlayPosition: "bottom-left" as const
+    overlayPosition: "bottom-left"
   },
-  {
-    id: 3,
-    title: "Core Banking Platform",
-    description: "Enterprise banking infrastructure with payments, lending, multi-branch support and real-time transaction processing.",
+  3: {
     imageSrc: coreImg,
     imageAlt: "Core banking platform interface",
     overlayData: {
@@ -98,12 +81,9 @@ const cards = [
       alt: "Real-time transaction processing metrics",
       className: "aspect-[173/180] w-full max-w-[173px]"
     },
-    overlayPosition: "bottom-left" as const
+    overlayPosition: "bottom-left"
   },
-  {
-    id: 4,
-    title: "Employee Credit Cooperatives",
-    description: "Specialised workplace banking for manufacturing, defence and government employees with flexible, sector-specific loan products.",
+  4: {
     imageSrc: employeeCredImg,
     imageAlt: "Employee credit cooperative banking",
     overlayData: {
@@ -111,11 +91,17 @@ const cards = [
       alt: "Employee loan and benefit automation",
       className: "aspect-[244/130] w-full max-w-[244px]"
     },
-    overlayPosition: "bottom-left" as const
+    overlayPosition: "bottom-left"
   }
-]
+};
 
 const Features = () => {
+  const { t } = useLanguage();
+
+  const cards = t.product.productsSection.cards.map((card) => ({
+    ...card,
+    ...cardDataMap[card.id],
+  }));
 
   return (
     <section className="py-12 md:py-[60px] bg-background">
@@ -127,7 +113,7 @@ const Features = () => {
             <h2
               className="h2 mb-6"
             >
-              Our Products
+              {t.product.productsSection.title}
             </h2>
           </AnimateOnView>
           <AnimateOnView
@@ -137,7 +123,7 @@ const Features = () => {
             <p
               className='text-muted-foreground'
             >
-              Discover our comprehensive suite of products designed for your financial and operational needs.
+              {t.product.productsSection.subtitle}
             </p>
           </AnimateOnView>
         </StaggerContainer>
@@ -158,8 +144,8 @@ const Features = () => {
                   <FeatureCardDescription>{card.description}</FeatureCardDescription>
                   <FeatureCardAction>
                     <Button asChild>
-                      <Link to="/products">
-                        Learn More
+                      <Link to="/product">
+                        {t.product.productsSection.learnMore}
                       </Link>
                     </Button>
                   </FeatureCardAction>

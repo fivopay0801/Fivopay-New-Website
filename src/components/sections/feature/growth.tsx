@@ -4,22 +4,24 @@ import { StaggerContainer } from '@/components/ui/motion/stagger'
 import Lottie from 'lottie-react'
 import Container from '../../container'
 import { Database, Shield, Zap, RefreshCw, BarChart, Users, LineChart, Cpu } from 'lucide-react'
-
-const featuresLeft = [
-    { text: "Core Banking", icon: Database, top: "18%", left: "5%" },
-    { text: "Ethical Finance", icon: Shield, top: "38%", left: "5%" },
-    { text: "Fast Transactions", icon: Zap, top: "58%", left: "5%" },
-    { text: "Automation", icon: RefreshCw, top: "78%", left: "5%" }
-];
-
-const featuresRight = [
-    { text: "Deep Analytics", icon: BarChart, top: "18%", right: "5%" },
-    { text: "Cooperative Mgmt", icon: Users, top: "38%", right: "5%" },
-    { text: "Forecasting", icon: LineChart, top: "58%", right: "5%" },
-    { text: "AI Integration", icon: Cpu, top: "78%", right: "5%" }
-];
+import { useLanguage } from '@/context/language-context'
 
 const FeatureGrowth = () => {
+    const { t } = useLanguage();
+
+    const featuresLeft = [
+        { text: t.product.growth.coreBanking, icon: Database, top: "18%", left: "5%" },
+        { text: t.product.growth.ethicalFinance, icon: Shield, top: "38%", left: "5%" },
+        { text: t.product.growth.fastTransactions, icon: Zap, top: "58%", left: "5%" },
+        { text: t.product.growth.automation, icon: RefreshCw, top: "78%", left: "5%" }
+    ];
+
+    const featuresRight = [
+        { text: t.product.growth.deepAnalytics, icon: BarChart, top: "18%", right: "5%" },
+        { text: t.product.growth.cooperativeMgmt, icon: Users, top: "38%", right: "5%" },
+        { text: t.product.growth.forecasting, icon: LineChart, top: "58%", right: "5%" },
+        { text: t.product.growth.aiIntegration, icon: Cpu, top: "78%", right: "5%" }
+    ];
 
     return (
         <section className="md:py-[60px] py-12 relative">
@@ -27,12 +29,12 @@ const FeatureGrowth = () => {
                 <StaggerContainer className="text-center md:max-w-none max-w-xs mx-auto">
                     <AnimateOnView blur>
                         <h2 className="h2 md:mb-5 mb-3">
-                            Smarter Banking, Built for Growth
+                            {t.product.growth.title}
                         </h2>
                     </AnimateOnView>
                     <AnimateOnView blur delay={0.2}>
                         <p className="text-muted-foreground">
-                            Discover the powerful tools that make <span className="text-gradient font-semibold">FivoPay</span> the future of finance.
+                            {t.product.growth.subtitleStart} <span className="text-gradient font-semibold">FivoPay</span> {t.product.growth.subtitleEnd}
                         </p>
                     </AnimateOnView>
                 </StaggerContainer>

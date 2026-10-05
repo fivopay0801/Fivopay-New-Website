@@ -3,14 +3,17 @@ import { AnimateOnView } from "@/components/ui/motion/animate-on-view";
 import { StaggerContainer } from "@/components/ui/motion/stagger";
 import { ShieldCheck, Activity, Headphones } from "lucide-react";
 import { Link } from "react-router-dom";
-
-const trustBadges = [
-  { icon: ShieldCheck, label: "Bank-Level Security" },
-  { icon: Activity, label: "99.9% Uptime SLA" },
-  { icon: Headphones, label: "24/7 Support" },
-];
+import { useLanguage } from "@/context/language-context";
 
 const Hero = () => {
+  const { t } = useLanguage();
+
+  const trustBadges = [
+    { icon: ShieldCheck, label: t.home.hero.securityBadge },
+    { icon: Activity, label: t.home.hero.uptimeBadge },
+    { icon: Headphones, label: t.home.hero.supportBadge },
+  ];
+
   return (
     <section className="relative flex items-center justify-center overflow-hidden hero-padding-top pb-10 md:pb-0 bg-[linear-gradient(150deg,_var(--tw-gradient-stops))] from-primary/30 via-background to-background">
       <div className="container mx-auto px-6 relative z-10">
@@ -18,28 +21,27 @@ const Hero = () => {
           <StaggerContainer>
             <AnimateOnView blur>
               <span className="inline-block mb-5 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-sm text-primary">
-                Registered Fintech Solutions Provider
+                {t.home.hero.badge}
               </span>
             </AnimateOnView>
             <AnimateOnView blur>
               <h1 className="h2 text-foreground mb-4">
-                Complete Financial Solutions for <span className="text-gradient">Modern Banking</span>
+                {t.home.hero.titleStart} <span className="text-gradient">{t.home.hero.titleGradient}</span>
               </h1>
             </AnimateOnView>
 
             <AnimateOnView blur delay={0.2}>
               <p className="text-body-md max-w-2xl mx-auto mb-6">
-                From Cooperative Societies to Core Banking and Ethical Finance — comprehensive SaaS
-                solutions for all financial institutions. Making Banking Easier.
+                {t.home.hero.subtitle}
               </p>
             </AnimateOnView>
 
             <AnimateOnView className="flex flex-wrap items-center justify-center gap-3 mb-8" delay={0.3}>
               <Button asChild>
-                <Link to="/product">Explore Products</Link>
+                <Link to="/product">{t.home.hero.exploreProducts}</Link>
               </Button>
               <Button asChild variant="outline" className="border-white/20 bg-white/5 hover:bg-white/10 text-white backdrop-blur-md px-6 py-[15px] text-[18px] h-auto">
-                <Link to="/contact">Schedule Demo</Link>
+                <Link to="/contact">{t.home.hero.scheduleDemo}</Link>
               </Button>
             </AnimateOnView>
 

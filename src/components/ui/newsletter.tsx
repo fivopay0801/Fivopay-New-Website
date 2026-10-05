@@ -7,10 +7,12 @@ import { toast } from "sonner";
 export interface NewsletterProps extends React.FormHTMLAttributes<HTMLFormElement> {
   placeholder?: string;
   className?: string;
+  buttonText?: string;
+  successText?: string;
 }
 
 const Newsletter = React.forwardRef<HTMLFormElement, NewsletterProps>(
-  ({ placeholder = "Enter Your Email", className, ...props }, ref) => {
+  ({ placeholder = "Enter Your Email", buttonText = "Schedule Call", successText = "Thanks — you're on the early access list.", className, ...props }, ref) => {
     const [email, setEmail] = React.useState("");
     const [submitted, setSubmitted] = React.useState(false);
 
@@ -36,7 +38,7 @@ const Newsletter = React.forwardRef<HTMLFormElement, NewsletterProps>(
           )}
         >
           <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" aria-hidden="true" />
-          <span className="text-[16px]">Thanks — you're on the early access list.</span>
+          <span className="text-[16px]">{successText}</span>
         </div>
       );
     }
@@ -77,7 +79,7 @@ const Newsletter = React.forwardRef<HTMLFormElement, NewsletterProps>(
           variant="form"
           className="flex-shrink-0"
         >
-          Schedule Call
+          {buttonText}
         </Button>
       </form>
     );

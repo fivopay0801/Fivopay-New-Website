@@ -7,35 +7,37 @@ import { AnimateOnView } from '@/components/ui/motion/animate-on-view'
 import { StaggerContainer } from '@/components/ui/motion/stagger'
 import Lottie from 'lottie-react'
 import Container from '../../container'
-
-const features = [
-    {
-        id: 1,
-        title: "Grow Savings Faster Every Day",
-        description: "Earn higher interest effortlessly on every single deposit.",
-        lottieData: feature1,
-    },
-    {
-        id: 2,
-        title: "Earn Cashback Without Any Limits",
-        description: "Get two percent back on every purchase made.",
-        lottieData: feature2,
-    },
-    {
-        id: 3,
-        title: "Track Weekly Financial Growth Easily",
-        description: "Spot spending patterns and plan smarter financial moves.",
-        lottieData: feature3,
-    },
-    {
-        id: 4,
-        title: "Seamless App & Tool Integrations",
-        description: "Sync FivoPay with tools for smoother money management.",
-        lottieData: feature4,
-    }
-]
+import { useLanguage } from '@/context/language-context'
 
 const FeatureGrid = () => {
+    const { t } = useLanguage();
+
+    const features = [
+        {
+            id: 1,
+            title: t.product.grid.feature1Title,
+            description: t.product.grid.feature1Desc,
+            lottieData: feature1,
+        },
+        {
+            id: 2,
+            title: t.product.grid.feature2Title,
+            description: t.product.grid.feature2Desc,
+            lottieData: feature2,
+        },
+        {
+            id: 3,
+            title: t.product.grid.feature3Title,
+            description: t.product.grid.feature3Desc,
+            lottieData: feature3,
+        },
+        {
+            id: 4,
+            title: t.product.grid.feature4Title,
+            description: t.product.grid.feature4Desc,
+            lottieData: feature4,
+        }
+    ];
 
     return (
         <section className="md:py-[60px] py-12">
@@ -43,12 +45,12 @@ const FeatureGrid = () => {
                 <StaggerContainer className="text-center md:max-w-xl max-w-sm mx-auto">
                     <AnimateOnView blur>
                         <h2 className="h2 md:mb-5 mb-3">
-                            Smart Banking, High Earning
+                            {t.product.grid.title}
                         </h2>
                     </AnimateOnView>
                     <AnimateOnView blur delay={0.2}>
                         <p className="text-muted-foreground">
-                            High-yield accounts, cashback cards, and flexible capital designed to help you grow.
+                            {t.product.grid.subtitle}
                         </p>
                     </AnimateOnView>
                 </StaggerContainer>

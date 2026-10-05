@@ -5,29 +5,32 @@ import { AnimateOnView } from '@/components/ui/motion/animate-on-view';
 import { StaggerContainer } from '@/components/ui/motion/stagger';
 import Lottie from 'lottie-react';
 import Container from '../../container';
-
-const streamlineFeatures = [
-  {
-    id: 1,
-    title: "Real-Time Payments & Settlements",
-    description: "UPI, IMPS, NEFT and RTGS rails built in, with automated settlement rules.",
-    lottieData: lottie1,
-  },
-  {
-    id: 2,
-    title: "Automated Dividends & Loan Processing",
-    description: "Multi-tier approvals, interest engines and dividend distribution on autopilot.",
-    lottieData: lottie2, // Will be added later
-  },
-  {
-    id: 3,
-    title: "Ethical Banking Modules",
-    description: "Mudarabah, Musharakah, Qard Hasan and automated Zakat calculation in one place.",
-    lottieData: lottie3, // Will be added later
-  },
-];
+import { useLanguage } from '@/context/language-context';
 
 const Content = () => {
+  const { t } = useLanguage();
+
+  const streamlineFeatures = [
+    {
+      id: 1,
+      title: t.home.content.feature1Title,
+      description: t.home.content.feature1Desc,
+      lottieData: lottie1,
+    },
+    {
+      id: 2,
+      title: t.home.content.feature2Title,
+      description: t.home.content.feature2Desc,
+      lottieData: lottie2,
+    },
+    {
+      id: 3,
+      title: t.home.content.feature3Title,
+      description: t.home.content.feature3Desc,
+      lottieData: lottie3,
+    },
+  ];
+
   return (
     <section className="py-12 md:py-[60px]">
       <Container className="space-y-8 md:space-y-20">
@@ -36,12 +39,12 @@ const Content = () => {
             <h2
               className="h2 md:mb-5 mb-3"
             >
-              Banking Operations, Streamlined End to End
+              {t.home.content.title}
             </h2>
           </AnimateOnView>
           <AnimateOnView blur delay={0.2}>
             <p className="text-muted-foreground">
-              Every <span className="text-gradient font-semibold">FivoPay</span> module is built for compliance, speed and complete auditability.
+              {t.home.content.subtitleStart} <span className="text-gradient font-semibold">FivoPay</span> {t.home.content.subtitleEnd}
             </p>
           </AnimateOnView>
         </StaggerContainer>

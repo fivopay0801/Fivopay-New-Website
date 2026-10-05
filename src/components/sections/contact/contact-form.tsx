@@ -14,6 +14,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { useLanguage } from "@/context/language-context";
 
 const phoneRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
 
@@ -34,6 +35,7 @@ const contactFormSchema = z.object({
 type ContactFormValues = z.infer<typeof contactFormSchema>;
 
 const ContactForm = () => {
+  const { t } = useLanguage();
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const form = useForm<ContactFormValues>({
@@ -52,8 +54,8 @@ const ContactForm = () => {
       console.log("Form submitted:", data);
       await new Promise((resolve) => setTimeout(resolve, 500));
       toast({
-        title: "Message sent successfully!",
-        description: "We'll get back to you as soon as possible.",
+        title: t.contact.successMsg,
+        description: t.contact.successSub,
         variant: "default",
       });
       form.reset();
@@ -62,13 +64,13 @@ const ContactForm = () => {
         setIsSuccess(false);
       }, 3000);
       setError(null);
-    } catch (error) {
+    } catch (err) {
       toast({
-        title: "Failed to send message",
-        description: "Please try again later or contact us directly.",
+        title: t.contact.errorMsg,
+        description: "",
         variant: "destructive",
       });
-      setError("Failed to send message. Please try again later.");
+      setError(t.contact.errorMsg);
       setTimeout(() => {
         setError(null);
       }, 5000);
@@ -84,10 +86,10 @@ const ContactForm = () => {
             name="firstName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-xs uppercase tracking-wider">First Name</FormLabel>
+                <FormLabel className="text-xs uppercase tracking-wider">{t.contact.firstName}</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="First Name"
+                    placeholder={t.contact.firstName}
                     {...field}
                     className="bg-background border-none rounded-full h-12 focus-visible:ring-1 focus-visible:ring-white/20"
                   />
@@ -101,10 +103,10 @@ const ContactForm = () => {
             name="lastName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-xs uppercase tracking-wider">Last Name</FormLabel>
+                <FormLabel className="text-xs uppercase tracking-wider">{t.contact.lastName}</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="Last Name"
+                    placeholder={t.contact.lastName}
                     {...field}
                     className="bg-background border-none rounded-full h-12 focus-visible:ring-1 focus-visible:ring-white/20"
                   />
@@ -120,11 +122,11 @@ const ContactForm = () => {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-xs uppercase tracking-wider">Email address</FormLabel>
+              <FormLabel className="text-xs uppercase tracking-wider">{t.contact.email}</FormLabel>
               <FormControl>
                 <Input
                   type="email"
-                  placeholder="Email address"
+                  placeholder={t.contact.email}
                   {...field}
                   className="bg-background border-none rounded-full h-12 focus-visible:ring-1 focus-visible:ring-white/20"
                 />
@@ -139,11 +141,11 @@ const ContactForm = () => {
           name="phone"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-xs uppercase tracking-wider">Phone Number</FormLabel>
+              <FormLabel className="text-xs uppercase tracking-wider">{t.contact.phone}</FormLabel>
               <FormControl>
                 <Input
                   type="tel"
-                  placeholder="Phone Number"
+                  placeholder={t.contact.phone}
                   {...field}
                   className="bg-background border-none rounded-full h-12 focus-visible:ring-1 focus-visible:ring-white/20"
                 />
@@ -158,10 +160,10 @@ const ContactForm = () => {
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-xs uppercase tracking-wider">Message</FormLabel>
+              <FormLabel className="text-xs uppercase tracking-wider">{t.contact.message}</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="Type here..."
+                  placeholder={t.contact.messagePlaceholder}
                   className="min-h-[150px] bg-background border-none rounded-[14px] focus-visible:ring-1 focus-visible:ring-white/20 resize-none"
                   {...field}
                 />
@@ -177,12 +179,12 @@ const ContactForm = () => {
           className="w-full h-14 rounded-full bg-gradient-to-b from-white to-[#d1d1d1] text-black font-medium hover:opacity-90 transition-opacity mt-4"
           disabled={form.formState.isSubmitting}
         >
-          Send Message
+          {t.contact.sendButton}
         </Button>
 
         {isSuccess && (
           <p className="text-center text-sm text-green-500 mt-2">
-            Message sent successfully!
+            {t.contact.successMsg}
           </p>
         )}
         {error && (

@@ -9,6 +9,7 @@ import {
   RefreshCw,
   Zap,
 } from "lucide-react";
+import { useLanguage } from "@/context/language-context";
 
 interface GatewayItem {
   name: string;
@@ -18,48 +19,49 @@ interface GatewayItem {
   statusTag: string;
 }
 
-const gateways: GatewayItem[] = [
-  {
-    name: "Razorpay",
-    logo: "/images/partners/razorpay_dark.svg",
-    className: "h-7 md:h-8 max-w-[145px]",
-    statusTag: "Primary & Failover Rail",
-  },
-  {
-    name: "Cashfree",
-    logo: "/images/partners/cashfree_trans.png",
-    className: "h-7 md:h-8 max-w-[130px]",
-    statusTag: "Auto-Cascade Route",
-  },
-  {
-    name: "PayU",
-    logo: "/images/partners/payu_dark.png",
-    className: "h-8 md:h-9 max-w-[110px]",
-    statusTag: "Redundant Route",
-  },
-  {
-    name: "Easebuzz",
-    logo: "/images/partners/easebuzz_dark.png",
-    className: "h-6 md:h-7 max-w-[150px]",
-    statusTag: "Dynamic Switch Rail",
-  },
-  {
-    name: "PhonePe",
-    logo: "/images/partners/phonepe_dark.png",
-    className: "h-7 md:h-8 max-w-[140px]",
-    statusTag: "Instant UPI Fallback",
-  },
-  {
-    name: "Custom Gateway API",
-    isCustom: true,
-    statusTag: "Plug Any Provider",
-  },
-];
-
-// Double list for seamless spread in continuous ticker
-const tickerGateways = [...gateways, ...gateways];
-
 const GatewayPartners = () => {
+  const { t } = useLanguage();
+
+  const gateways: GatewayItem[] = [
+    {
+      name: "Razorpay",
+      logo: "/images/partners/razorpay_dark.svg",
+      className: "h-7 md:h-8 max-w-[145px]",
+      statusTag: t.home.gateway.statusPrimary,
+    },
+    {
+      name: "Cashfree",
+      logo: "/images/partners/cashfree_trans.png",
+      className: "h-7 md:h-8 max-w-[130px]",
+      statusTag: t.home.gateway.statusCascade,
+    },
+    {
+      name: "PayU",
+      logo: "/images/partners/payu_dark.png",
+      className: "h-8 md:h-9 max-w-[110px]",
+      statusTag: t.home.gateway.statusRedundant,
+    },
+    {
+      name: "Easebuzz",
+      logo: "/images/partners/easebuzz_dark.png",
+      className: "h-6 md:h-7 max-w-[150px]",
+      statusTag: t.home.gateway.statusDynamic,
+    },
+    {
+      name: "PhonePe",
+      logo: "/images/partners/phonepe_dark.png",
+      className: "h-7 md:h-8 max-w-[140px]",
+      statusTag: t.home.gateway.statusFallback,
+    },
+    {
+      name: t.home.gateway.customGateway,
+      isCustom: true,
+      statusTag: t.home.gateway.statusCustom,
+    },
+  ];
+
+  const tickerGateways = [...gateways, ...gateways];
+
   return (
     <section className="overflow-hidden py-14 md:py-20 border-y border-white/[0.06] bg-gradient-to-b from-black/40 via-black/20 to-black/40 relative">
       {/* Subtle background ambient glow */}
@@ -73,18 +75,16 @@ const GatewayPartners = () => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
-            <span>Intelligent Multi-Gateway Failover</span>
+            <span>{t.home.gateway.badge}</span>
           </div>
 
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-4">
-            Multi-Gateway Redundancy.{" "}
-            <span className="text-gradient">Zero Payment Dropoffs.</span>
+            {t.home.gateway.titleStart}{" "}
+            <span className="text-gradient">{t.home.gateway.titleGradient}</span>
           </h2>
 
           <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-            Pre-integrated with India&apos;s top payment gateways with automated failover logic.
-            If one gateway encounters downtime or bank failure, transactions dynamically cascade to the next
-            active gateway — ensuring 99.99% payment continuity.
+            {t.home.gateway.description}
           </p>
         </AnimateOnView>
 
@@ -95,7 +95,7 @@ const GatewayPartners = () => {
               {/* Step 1: Initiated */}
               <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/[0.05] border border-white/10 text-foreground font-medium w-full sm:w-auto justify-center shadow-sm">
                 <span className="w-2 h-2 rounded-full bg-blue-400" />
-                <span>Customer Checkout</span>
+                <span>{t.home.gateway.checkout}</span>
               </div>
 
               <ArrowRight className="w-4 h-4 text-muted-foreground/60 hidden sm:block shrink-0" />
@@ -106,7 +106,7 @@ const GatewayPartners = () => {
                   className="w-3.5 h-3.5 animate-spin text-primary"
                   style={{ animationDuration: "5s" }}
                 />
-                <span>Smart Routing Engine</span>
+                <span>{t.home.gateway.smartRouting}</span>
               </div>
 
               <ArrowRight className="w-4 h-4 text-muted-foreground/60 hidden sm:block shrink-0" />
@@ -114,15 +114,15 @@ const GatewayPartners = () => {
               {/* Step 3: Gateway 1 fails -> Auto-cascade to Gateway 2 */}
               <div className="flex items-center gap-2 w-full sm:w-auto justify-center flex-wrap">
                 <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-rose-500/10 border border-rose-500/30 text-rose-300 line-through opacity-70 text-[11px]">
-                  <span>Gateway 1 Down</span>
+                  <span>{t.home.gateway.gatewayDown}</span>
                 </div>
                 <span className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1">
                   <Zap className="w-3 h-3 text-emerald-400 fill-emerald-400" />
-                  Auto-Cascade
+                  {t.home.gateway.autoCascade}
                 </span>
                 <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500/15 border border-emerald-500/40 text-emerald-300 font-semibold shadow-[0_0_15px_rgba(16,185,129,0.2)] text-[11px]">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>Gateway 2 Success</span>
+                  <span>{t.home.gateway.gatewaySuccess}</span>
                 </div>
               </div>
             </div>
@@ -138,10 +138,10 @@ const GatewayPartners = () => {
               </div>
               <div>
                 <h3 className="text-sm font-semibold text-foreground mb-1">
-                  Instant Auto-Failover
+                  {t.home.gateway.card1Title}
                 </h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Automatic retry & rerouting to secondary rail within milliseconds if primary gateway times out.
+                  {t.home.gateway.card1Desc}
                 </p>
               </div>
             </div>
@@ -152,10 +152,10 @@ const GatewayPartners = () => {
               </div>
               <div>
                 <h3 className="text-sm font-semibold text-foreground mb-1">
-                  Pre-Integrated & Extensible
+                  {t.home.gateway.card2Title}
                 </h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Razorpay, Cashfree, PayU, PhonePe, Easebuzz ready to use, plus flexible custom gateway adapters.
+                  {t.home.gateway.card2Desc}
                 </p>
               </div>
             </div>
@@ -166,10 +166,10 @@ const GatewayPartners = () => {
               </div>
               <div>
                 <h3 className="text-sm font-semibold text-foreground mb-1">
-                  99.99% Transaction Success
+                  {t.home.gateway.card3Title}
                 </h3>
                 <p className="text-xs text-muted-foreground leading-relaxed">
-                  Dynamic health checks proactively bypass outages before your users experience a failed payment.
+                  {t.home.gateway.card3Desc}
                 </p>
               </div>
             </div>
@@ -180,7 +180,7 @@ const GatewayPartners = () => {
         <AnimateOnView y={35} delay={0.2} className="relative w-full">
           <div className="text-center mb-4">
             <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-muted-foreground/80">
-              Pre-Integrated & Supported Gateway Rails
+              {t.home.gateway.tickerTitle}
             </span>
           </div>
 
@@ -196,7 +196,7 @@ const GatewayPartners = () => {
                       <Plus className="w-3.5 h-3.5" />
                     </div>
                     <span className="font-semibold text-sm text-foreground group-hover:text-primary transition-colors">
-                      Custom Gateway API
+                      {gateway.name}
                     </span>
                   </div>
                 ) : (

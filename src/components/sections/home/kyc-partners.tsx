@@ -29,13 +29,17 @@ const tickerKycPartners = [
   ...kycPartners,
 ];
 
+import { useLanguage } from "@/context/language-context";
+
 const KycPartners = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="overflow-hidden py-10 md:py-14 border-y border-white/[0.06] bg-black/20 relative">
       <Container>
         <AnimateOnView y={20} className="text-center mb-6">
           <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.25em] text-muted-foreground">
-            Our KYC Partners
+            {t.home.kycPartners.title}
           </p>
         </AnimateOnView>
 

@@ -2,41 +2,17 @@ import Container from "@/components/container"
 import { AnimateOnView } from "@/components/ui/motion/animate-on-view"
 import { StaggerContainer } from "@/components/ui/motion/stagger"
 import { LockKeyhole, ScanFace, Radar, Server, UserCheck, Network } from "lucide-react"
-
-const securityFeatures = [
-    {
-        icon: LockKeyhole,
-        title: "AES-256 Encryption",
-        description: "Military-grade encryption for all data at rest and in transit. Your sensitive information is protected with the strongest encryption standards."
-    },
-    {
-        icon: ScanFace,
-        title: "Multi-Factor Authentication",
-        description: "Advanced MFA options including biometrics, OTP, and hardware tokens to ensure only authorized access to your systems."
-    },
-    {
-        icon: Radar,
-        title: "Real-Time Fraud Detection",
-        description: "AI-powered monitoring systems detect and prevent fraudulent activities in real-time, protecting your institution and customers."
-    },
-    {
-        icon: Server,
-        title: "Secure Data Centers",
-        description: "Tier-4 data centers with physical security, redundant power, and climate control. Geographic distribution for disaster recovery."
-    },
-    {
-        icon: UserCheck,
-        title: "Access Control",
-        description: "Role-based access control with granular permissions. Complete audit trails for all user activities and system changes."
-    },
-    {
-        icon: Network,
-        title: "Infrastructure Security",
-        description: "Regular penetration testing, vulnerability assessments, and continuous monitoring. DDoS protection and WAF included."
-    }
-]
+import { useLanguage } from "@/context/language-context"
 
 const Security = () => {
+    const { t } = useLanguage();
+
+    const securityIcons = [LockKeyhole, ScanFace, Radar, Server, UserCheck, Network];
+    const securityFeatures = t.home.security.items.map((item, index) => ({
+        ...item,
+        icon: securityIcons[index % securityIcons.length],
+    }));
+
     return (
         <section className="py-16 md:py-[80px] bg-background overflow-hidden relative">
             <style>
@@ -57,12 +33,12 @@ const Security = () => {
                 <StaggerContainer className="text-center max-w-2xl mx-auto">
                     <AnimateOnView blur>
                         <h2 className="h2 mb-5">
-                            Enterprise-Grade Security
+                            {t.home.security.title}
                         </h2>
                     </AnimateOnView>
                     <AnimateOnView blur delay={0.2}>
                         <p className="text-muted-foreground">
-                            Your security is our top priority. We employ industry-leading standards to ensure your financial data is protected at all times.
+                            {t.home.security.subtitle}
                         </p>
                     </AnimateOnView>
                 </StaggerContainer>
