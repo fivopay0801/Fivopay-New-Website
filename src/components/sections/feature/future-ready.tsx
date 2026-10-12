@@ -2,10 +2,7 @@ import { AnimateOnView } from '@/components/ui/motion/animate-on-view'
 import { StaggerContainer } from '@/components/ui/motion/stagger'
 import { ArrowRight, Bookmark, Building2, LayoutGrid, Zap } from 'lucide-react'
 import Container from '../../container'
-import FeatureVideo from './feature-video'
 import { useLanguage } from '@/context/language-context'
-
-import fivoPayDemoImg from '@/assets/FivopayProductDemo.png'
 
 const FutureReadyFinance = () => {
     const { t } = useLanguage();
@@ -52,15 +49,6 @@ const FutureReadyFinance = () => {
                         </p>
                     </AnimateOnView>
                 </StaggerContainer>
-
-                <AnimateOnView delay={0.3} blur>
-                    <div className="max-w-4xl mx-auto">
-                        <FeatureVideo
-                            thumbnail={fivoPayDemoImg}
-                            videoUrl="https://www.youtube.com/watch?v=qtkjIyRJGa0"
-                        />
-                    </div>
-                </AnimateOnView>
 
                 <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 pt-8">
                     {features.map((feature, index) => (
